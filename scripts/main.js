@@ -11,7 +11,7 @@
             // Instantiate FileReader object to read file data to memory
             var reader = new FileReader();
 
-            // Fire onprogress event while file is being read
+            // Fire onprogress event while reading file
             reader.onprogress = function(e) {
                 if(e.lengthComputable) {
                     var loaded = Math.floor((e.loaded / e.total) * 100);
@@ -30,6 +30,7 @@
                 console.log('File Contents (first 100 chars): \n' + e.target.result.substr(0, 100));
             };
 
+            // Fire onerror event if error occurred while reading file
             reader.onerror = function(e) {
                 if(e.target.error.name === 'NotReadableError') {
                     alert('There was an error reading the file.');
