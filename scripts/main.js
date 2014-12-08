@@ -1,3 +1,5 @@
+/* global File, FileReader, FileList, Blob */
+
 (function() {
     'use strict';
 
@@ -7,7 +9,7 @@
 
         if(file) {
             // Instantiate FileReader object to read file data to memory
-            var reader = new window.FileReader();
+            var reader = new FileReader();
 
             // Fire onprogress event while file is being read
             reader.onprogress = function(e) {
@@ -30,22 +32,22 @@
 
             reader.onerror = function(e) {
                 if(e.target.error.name === 'NotReadableError') {
-                    console.log('There was an error reading the file.');
+                    alert('There was an error reading the file.');
                 }
             };
 
             // Read file as a text string decoded as UTF-8
             reader.readAsText(file);
         } else {
-            console.log('The file cannot be loaded.');
+            alert('The file cannot be loaded.');
         }
     }
 
     // Check if File API is supported in browser
-    if(window.File && window.FileReader && window.FileList && window.Blob) {
+    if(File && FileReader && FileList && Blob) {
         // Detect changes (loaded file) in fileInput and run readFile() on change
         document.getElementById('fileInput').addEventListener('change', readFile, false);
     } else {
-        console.log('The File APIs are not fully supported in your browser.');
+        alert('The File APIs are not fully supported in your browser.');
     }
 }());
