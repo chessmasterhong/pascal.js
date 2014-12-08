@@ -1,0 +1,18 @@
+{
+  "name": "pascal.js",
+  "version": "0.0.0",
+  "description": "A Pascal compiler written in JavaScript.",
+  "author": "Kevin Chan",
+  "license": "MIT",
+  "homepage": "https://github.com/chessmasterhong/pascal.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chessmasterhong/pascal.js"
+  },
+  "bugs": {
+    "url": "https://github.com/chessmasterhong/pascal.js/issues"
+  },
+  "devDependencies": {},
+  "devDependencies": {},
+  "scripts": {}
+}
