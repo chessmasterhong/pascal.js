@@ -10,10 +10,20 @@ define('modules/init', [
 ], function(Scanner) {
     'use strict';
 
+    /**
+     * WRITEME
+     * @class Init
+     */
     function Init() {}
 
     Init.prototype = {};
 
+    /**
+     * Extracts the contents from the source file.
+     * @function
+     * @param {Object} evt THe event change object containing the list of files to be loaded.
+     * @returns {Undefined}
+     */
     Init.prototype.readFile = function(evt) {
         // Retrieve first file from FileList object (if multiple files selected)
         var file = evt.target.files[0];
@@ -39,22 +49,7 @@ define('modules/init', [
                 console.log('File Type: ' + file.type);
                 console.log('File Size: ' + file.size + ' bytes');
 
-                // Initialize the Scanner
-                var scanner = new Scanner(e.target.result);
-                var character = scanner.get(); // Feed first character in source file to Scanner
-
-                // Drive the Scanner to traverse through each character in source file until end of file
-                while(true) {
-                    console.log(character);
-
-                    // End case. End of file reached, stop the driver.
-                    if(character.cargo === '    EOF') {
-                        break;
-                    }
-
-                    // Incremental step. Get next character in source file.
-                    character = scanner.get();
-                }
+                scannerDriver(e.target.result);
             };
 
             // Fire onerror event if error occurred while reading file
@@ -70,6 +65,33 @@ define('modules/init', [
             alert('ERROR: The file cannot be loaded.');
         }
     };
+
+    /**
+     * Initializes the Scanner with source contents. Drives the Scanner to
+     *     repeatedly get characters in contents. Stops the Scanner when end of
+     *     contents is reached.
+     * @function
+     * @param   {String}    contents The source contents the Scanner will read from.
+     * @returns {Undefined}
+     */
+    function scannerDriver(contents) {
+        // Initialize the Scanner
+        var scanner = new Scanner(contents);
+        var character = scanner.get(); // Feed first character in source file to Scanner
+
+        // Drive the Scanner to traverse through each character in source file until end of file
+        while(true) {
+            console.log(character);
+
+            // End case. End of file reached, stop the driver.
+            if(character.cargo === '    EOF') {
+                break;
+            }
+
+            // Incremental step. Get next character in source file.
+            character = scanner.get();
+        }
+    }
 
     return Init;
 });
