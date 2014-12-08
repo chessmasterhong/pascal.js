@@ -2,7 +2,7 @@
     "source": {
         "include": [
             "./README.md",
-            "./scripts/modules/"
+            "./scripts/"
         ],
         "exclude": [],
         "includePattern": ".+\\.js(doc)?$",

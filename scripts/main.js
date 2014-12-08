@@ -1,11 +1,17 @@
+/**
+ * The entry point for this compiler. Detects changes in file loaded through the
+ *     web browser and initializes the compiler process. It also handles the
+ *     application's configuration and module dependencies.
+ * @module main
+ */
+
 require.config({
     baseUrl: './scripts/'
 });
 
-define([
-    'require',
+define('main', [
     'modules/init'
-], function(require, Init) {
+], function(Init) {
     'use strict';
 
     // Check if File API is supported in browser
