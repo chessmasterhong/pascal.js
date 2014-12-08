@@ -15,7 +15,7 @@
         "lenient"    : true,
         "private"    : false,
         "recurse"    : true,
-        "template"   : "./node_modules/ink-docstrap/template/"
+        "template"   : "./node_modules/jaguarjs-jsdoc/"
     },
 
     "tags": {
@@ -27,21 +27,22 @@
     ],
 
     "templates": {
-        "cleverLinks"          : false,
-        "collapseSymbols"      : false,
-        "copyright"            : "",
-        "dateFormat"           : "dddd, MMMM DD YYYY HH:mm:ss [GMT]ZZ",
-        "footer"               : "",
-        "highlightTutorialCode": true,
-        "inverseNav"           : true,
-        "linenums"             : true,
-        "monospaceLinks"       : false,
-        "navType"              : "vertical",
-        "outputSourceFiles"    : true,
-        "outputSourcePath"     : true,
-        "systemName"           : "pascal.js",
-        "theme"                : "cerulean",
-        "tutorials"            : "./tutorials/"
+        "applicationName": "pascal.js",
+        "disqus": "",
+        "googleAnalytics": "",
+        "openGraph": {
+            "title": "",
+            "type": "website",
+            "image": "",
+            "site_name": "",
+            "url": ""
+        },
+        "meta": {
+            "title": "",
+            "description": "",
+            "keyword": ""
+        },
+        "linenums": true
     },
 
     "markdown": {

@@ -41,7 +41,7 @@ define('modules/character', [], function() {
     /**
      * Converts the current character to a displayable string representation.
      * @function
-     * @returns {CharacterObject} The information about this character.
+     * @returns {CharacterObject} _ The information about this character.
      */
     Character.prototype.convertToString = function() {
         var cargo = this.cargo;

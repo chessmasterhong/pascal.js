@@ -3,7 +3,7 @@
  *     browser and extracting the file's contents for the Scanner to read from.
  *     It is also responsible for initializing, driving, and stopping the
  *     Scanner as the Scanner traverses through the file's contents.
- * @module modules/scanner
+ * @module modules/init
  */
 define('modules/init', [
     'modules/scanner'
@@ -21,7 +21,7 @@ define('modules/init', [
     /**
      * Extracts the contents from the source file.
      * @function
-     * @param {Object} evt THe event change object containing the list of files to be loaded.
+     * @param {Object} evt The event change object containing the list of files to be loaded.
      * @returns {Undefined}
      */
     Init.prototype.readFile = function(evt) {

@@ -28,7 +28,7 @@ define('modules/scanner', [
     /**
      * Gets information of the next character in srcText.
      * @function
-     * @returns {CharacterObject} The information about this character converted to a displayable string representation.
+     * @returns {CharacterObject} _ The information about this character converted to a displayable string representation.
      */
     Scanner.prototype.get = function() {
         this.srcIndex++;
