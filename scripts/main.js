@@ -1,6 +1,6 @@
-/* global File, FileReader, FileList, Blob */
-
-(function() {
+define([
+    'require'
+], function(require) {
     'use strict';
 
     function readFile(evt) {
@@ -33,14 +33,14 @@
             // Fire onerror event if error occurred while reading file
             reader.onerror = function(e) {
                 if(e.target.error.name === 'NotReadableError') {
-                    alert('There was an error reading the file.');
+                    alert('ERROR: There was an error reading the file.');
                 }
             };
 
             // Read file as a text string decoded as UTF-8
-            reader.readAsText(file);
+            reader.readAsText(file, 'utf-8');
         } else {
-            alert('The file cannot be loaded.');
+            alert('ERROR: The file cannot be loaded.');
         }
     }
 
@@ -49,6 +49,6 @@
         // Detect changes (loaded file) in fileInput and run readFile() on change
         document.getElementById('fileInput').addEventListener('change', readFile, false);
     } else {
-        alert('The File APIs are not fully supported in your browser.');
+        alert('ERROR: The File APIs are not fully supported in your browser.');
     }
-}());
+});
