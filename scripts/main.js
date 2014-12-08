@@ -40,7 +40,7 @@ define([
 
                     while(true) {
                         console.log(character)
-                        if(character === '    EOF') {
+                        if(character.cargo === '    EOF') {
                             break;
                         }
                         character = scanner.get();

@@ -22,8 +22,9 @@ define('modules/scanner', [
     Scanner.prototype = {};
 
     /**
-     * WRITEME
+     * Gets information of the next character in srcText.
      * @function
+     * @returns {CharacterObject} The information about this character converted to a displayable string representation.
      */
     Scanner.prototype.get = function() {
         this.srcIndex++;
@@ -39,13 +40,13 @@ define('modules/scanner', [
 
         var char;
         if(this.srcIndex > this.finalIndex) {
-            char = new Character('    EOF' , this.lineIndex, this.colIndex, this.srcIndex, this.srcText).convertToString();
+            char = new Character('    EOF' , this.lineIndex, this.colIndex, this.srcIndex, this.srcText);
         } else {
             var c = this.srcText[this.srcIndex];
-            char = new Character(c, this.lineIndex, this.colIndex, this.srcIndex, this.srcText).convertToString();
+            char = new Character(c, this.lineIndex, this.colIndex, this.srcIndex, this.srcText);
         }
 
-        return char;
+        return char.convertToString();
     };
 
     return Scanner;
