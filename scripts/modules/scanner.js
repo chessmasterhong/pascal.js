@@ -1,18 +1,30 @@
-define([
+/**
+ * @module modules/scanner
+ */
+define('modules/scanner', [
     'modules/character'
 ], function(Character) {
     'use strict';
 
+    /**
+     * WRITEME
+     * @class Scanner
+     * @param {String} srcText The entire source text to be scanned.
+     */
     function Scanner(srcText) {
-        this.srcText   = srcText;
+        this.srcText    = srcText;
         this.finalIndex = this.srcText.length - 1;
-        this.srcIndex  = -1;
-        this.lineIndex = 0;
-        this.colIndex  = -1;
+        this.srcIndex   = -1;
+        this.lineIndex  = 0;
+        this.colIndex   = -1;
     }
 
     Scanner.prototype = {};
 
+    /**
+     * WRITEME
+     * @function
+     */
     Scanner.prototype.get = function() {
         this.srcIndex++;
 
