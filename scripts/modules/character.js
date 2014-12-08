@@ -7,9 +7,9 @@ define('modules/character', [], function() {
     /**
      * @typedef CharacterObject
      * @type {Object}
-     * @property {Number} return.lineIndex The index of the line where the character is located in the srcText.
-     * @property {Number} return.colIndex  The index of the column in the line where the character is located in the srcText.
-     * @property {String} return.cargo     The displayable string representation of the character.
+     * @property {Number} lineIndex The index of the line where the character is located in the srcText.
+     * @property {Number} colIndex  The index of the column in the line where the character is located in the srcText.
+     * @property {String} cargo     The displayable string representation of the character.
      */
 
     /**

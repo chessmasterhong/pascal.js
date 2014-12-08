@@ -79,9 +79,11 @@ define('modules/init', [
         var scanner = new Scanner(contents);
         var character = scanner.get(); // Feed first character in source file to Scanner
 
+        var output = document.getElementById('output');
+
         // Drive the Scanner to traverse through each character in source file until end of file
         while(true) {
-            console.log(character);
+            output.innerHTML += character.lineIndex + '  ' + character.colIndex + '  ' + character.cargo + '\n';
 
             // End case. End of file reached, stop the driver.
             if(character.cargo === '    EOF') {
