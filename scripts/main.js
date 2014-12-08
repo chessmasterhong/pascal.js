@@ -37,6 +37,14 @@ define([
 
                     var scanner = new Scanner(e.target.result);
                     var character = scanner.get();
+
+                    while(true) {
+                        console.log(character)
+                        if(character === '    EOF') {
+                            break;
+                        }
+                        character = scanner.get();
+                    }
                 };
 
                 // Fire onerror event if error occurred while reading file
