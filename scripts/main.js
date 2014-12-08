@@ -12,7 +12,7 @@ define([
     if(File && FileReader) {
         var init = new Init();
 
-        // Detect changes (loaded file) in fileInput and run readFile() on change
+        // Detect changes (loaded file) in fileInput and runs the compiler on change
         document.getElementById('fileInput').addEventListener('change', init.readFile, false);
     } else {
         alert('ERROR: The File APIs are not fully supported in your browser.');

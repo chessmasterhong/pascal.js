@@ -1,3 +1,10 @@
+/**
+ * The Init interfaces with the File API to enable loading files through the web
+ *     browser and extracting the file's contents for the Scanner to read from.
+ *     It is also responsible for initializing, driving, and stopping the
+ *     Scanner as the Scanner traverses through the file's contents.
+ * @module modules/scanner
+ */
 define('modules/init', [
     'modules/scanner'
 ], function(Scanner) {
