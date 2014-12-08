@@ -1,0 +1,51 @@
+{
+    "source": {
+        "include": [
+            "./README.md",
+            "./scripts/modules/"
+        ],
+        "exclude": [],
+        "includePattern": ".+\\.js(doc)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+
+    "opts": {
+        "destination": "./docs/",
+        "encoding"   : "utf8",
+        "lenient"    : true,
+        "private"    : false,
+        "recurse"    : true,
+        "template"   : "./node_modules/ink-docstrap/template/"
+    },
+
+    "tags": {
+        "allowUnknownTags": true
+    },
+
+    "plugins": [
+        "plugins/markdown"
+    ],
+
+    "templates": {
+        "cleverLinks"          : false,
+        "collapseSymbols"      : false,
+        "copyright"            : "",
+        "dateFormat"           : "dddd, MMMM DD YYYY HH:mm:ss [GMT]ZZ",
+        "footer"               : "",
+        "highlightTutorialCode": true,
+        "inverseNav"           : true,
+        "linenums"             : true,
+        "monospaceLinks"       : false,
+        "navType"              : "vertical",
+        "outputSourceFiles"    : true,
+        "outputSourcePath"     : true,
+        "systemName"           : "pascal.js",
+        "theme"                : "cerulean",
+        "tutorials"            : "./tutorials/"
+    },
+
+    "markdown": {
+        "parser"  : "gfm",
+        "hardwrap": true
+    }
+}
