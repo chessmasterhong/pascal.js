@@ -1,4 +1,8 @@
 /**
+ * The Scanner is responsible for reading the source file one character at a
+ *     time. For each character, it keeps track of the line, column, and
+ *     position where the character was found. Each time the scanner is called,
+ *     it reads the next character from the file and returns it.
  * @module modules/scanner
  */
 define('modules/scanner', [

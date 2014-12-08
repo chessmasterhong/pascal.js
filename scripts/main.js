@@ -35,14 +35,20 @@ define([
                     console.log('File Type: ' + file.type);
                     console.log('File Size: ' + file.size + ' bytes');
 
+                    // Initialize the Scanner
                     var scanner = new Scanner(e.target.result);
-                    var character = scanner.get();
+                    var character = scanner.get(); // Feed first character in source file to Scanner
 
+                    // Drive the Scanner to traverse through each character in source file until end of file
                     while(true) {
-                        console.log(character)
+                        console.log(character);
+
+                        // End case. End of file reached, stop the driver.
                         if(character.cargo === '    EOF') {
                             break;
                         }
+
+                        // Incremental step. Get next character in source file.
                         character = scanner.get();
                     }
                 };
