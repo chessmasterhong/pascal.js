@@ -12,11 +12,10 @@
   "bugs": {
     "url": "https://github.com/chessmasterhong/pascal.js/issues"
   },
-  "devDependencies": {},
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-shell": "^0.2.11",
-    "ink-docstrap": "^0.4.12",
+    "jaguarjs-jsdoc": "0.0.1",
     "jsdoc": "^3.3.0-alpha11"
   },
   "scripts": {}

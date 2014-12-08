@@ -2,5 +2,9 @@
 
 /docs/
 
+/server*
+
+*.url
+
 .DS_Store
 Thumbs.db
