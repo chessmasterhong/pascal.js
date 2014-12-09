@@ -47,25 +47,28 @@ define('modules/token', [
         return s;
     };
 
-    Token.prototype.isWhitespace = function(char) {
+    Token.prototype.isWhitespace = function() {
         return (
-            char === ' ' ||  // Space
-            char === '\t' || // Tab
-            char === '\n' || // Line Feed
-            char === '\r'    // Carriage Return
+            this.cargo === ' ' ||  // Space
+            this.cargo === '\t' || // Tab
+            this.cargo === '\n' || // Line Feed
+            this.cargo === '\r'    // Carriage Return
         );
     };
 
-    Token.prototype.isDigit = function(char) {
-        return char >= '0' && char <= '9';
+    Token.prototype.isDigit = function() {
+        return this.cargo >= '0' && this.cargo <= '9';
     };
 
-    Token.prototype.isAlpha = function(char) {
-        return (char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z');
+    Token.prototype.isAlpha = function() {
+        return (
+            (this.cargo >= 'a' && this.cargo <= 'z') ||
+            (this.cargo >= 'A' && this.cargo <= 'Z')
+        );
     };
 
-    Token.prototype.isAlphaNumeric = function(char) {
-        return this.isAlpha(char) && this.isDigit(char);
+    Token.prototype.isAlphaNumeric = function() {
+        return this.isAlpha(this.cargo) && this.isDigit(this.cargo);
     };
 
     return Token;
