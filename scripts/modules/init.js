@@ -2,12 +2,13 @@
  * The Init interfaces with the File API to enable loading files through the web
  *     browser and extracting the file's contents for the Scanner to read from.
  *     It is also responsible for initializing, driving, and stopping the
- *     Scanner as the Scanner traverses through the file's contents.
+ *     application.
  * @module modules/init
  */
 define('modules/init', [
-    'modules/scanner'
-], function(Scanner) {
+    'modules/scanner',
+    'modules/lexer'
+], function(Scanner, Lexer) {
     'use strict';
 
     /**
@@ -49,7 +50,7 @@ define('modules/init', [
                 console.log('File Type: ' + file.type);
                 console.log('File Size: ' + file.size + ' bytes');
 
-                scannerDriver(e.target.result);
+                lexerDriver(e.target.result);
             };
 
             // Fire onerror event if error occurred while reading file
@@ -80,19 +81,33 @@ define('modules/init', [
         var character = scanner.get(); // Feed first character in source file to Scanner
 
         var output = document.getElementById('output');
+        output.innerHTML = 'LINE COL  CHARACTER\n';
 
         // Drive the Scanner to traverse through each character in source file until end of file
         while(true) {
-            output.innerHTML += character.lineIndex + '  ' + character.colIndex + '  ' + character.cargo + '\n';
+            output.innerHTML += ('    ' + character.lineIndex).slice(-4) + ' ' + ('    ' + character.colIndex).slice(-3) + '  ' + character.cargo + '\n';
 
             // End case. End of file reached, stop the driver.
-            if(character.cargo === '    EOF') {
+            if(character.cargo === '  EOF') {
                 break;
             }
 
             // Incremental step. Get next character in source file.
             character = scanner.get();
         }
+    }
+
+    function lexerDriver(contents) {
+        var lexer = new Lexer(contents);
+
+        //while(true) {
+            var token = lexer.get();
+            console.log(token);
+
+            //if(token === '  EOF') {
+            //    break;
+            //}
+        //}
     }
 
     return Init;
