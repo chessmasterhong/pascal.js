@@ -15,7 +15,16 @@ define('modules/init', [
      * WRITEME
      * @class Init
      */
-    function Init() {}
+    function Init() {
+        // Globals
+        window.TOKENS = {
+            'EOF'  : 'TK_END_OF_FILE',
+            'SPACE': 'TK_SPACE',
+            'TAB'  : 'TK_TAB',
+            'LF'   : 'TK_LINE_FEED',
+            'CR'   : 'TK_CARRIAGE_RETURN'
+        }
+    }
 
     Init.prototype = {};
 
@@ -50,7 +59,7 @@ define('modules/init', [
                 console.log('File Type: ' + file.type);
                 console.log('File Size: ' + file.size + ' bytes');
 
-                //scannerDriver(e.target.result);
+                scannerDriver(e.target.result);
                 lexerDriver(e.target.result);
             };
 
@@ -89,7 +98,7 @@ define('modules/init', [
             output.innerHTML += ('    ' + character.lineIndex).slice(-4) + ' ' + ('    ' + character.colIndex).slice(-3) + '  ' + character.cargo + '\n';
 
             // End case. End of file reached, stop the driver.
-            if(character.cargo === 'TK_EOF') {
+            if(character.cargo === window.TOKENS.EOF) {
                 break;
             }
 
@@ -104,7 +113,7 @@ define('modules/init', [
         while(true) {
             var token = lexer.get();
 
-            if(token.cargo === 'TK_EOF') {
+            if(token.cargo === window.TOKENS.EOF) {
                 break;
             }
         }

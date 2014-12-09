@@ -23,7 +23,7 @@ define('modules/lexer', [
         }
 
         while(this.token.isWhitespace(character)) {
-            if(character === 'TK_EOF') {
+            if(character === window.TOKENS.EOF) {
                 return new Token(null);
             }
 

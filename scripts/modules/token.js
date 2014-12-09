@@ -53,10 +53,10 @@ define('modules/token', [
             //this.cargo === '\t' || // Tab
             //this.cargo === '\n' || // Line Feed
             //this.cargo === '\r'    // Carriage Return
-            this.cargo === 'TK_SPACE' ||
-            this.cargo === 'TK_TAB' ||
-            this.cargo === 'TK_LINE FEED' ||
-            this.cargo === 'TK_CARRIAGE RETURN'
+            this.cargo === window.TOKENS.SPACE ||
+            this.cargo === window.TOKENS.TAB ||
+            this.cargo === window.TOKENS.LF ||
+            this.cargo === window.TOKENS.CR
         );
     };
 

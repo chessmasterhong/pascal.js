@@ -47,13 +47,13 @@ define('modules/character', [], function() {
         var cargo = this.cargo;
 
         if(cargo === ' ') {
-            cargo = 'TK_SPACE';
+            cargo = window.TOKENS.SPACE;
         } else if(cargo === '\t') {
-            cargo = 'TK_TAB';
+            cargo = window.TOKENS.TAB;
         } else if(cargo === '\n') {
-            cargo = 'TK_LINE FEED';
+            cargo = window.TOKENS.LF;
         } else if(cargo === '\r') {
-            cargo = 'TK_CARRIAGE RETURN';
+            cargo = window.TOKENS.CR;
         }
         /* NOTE: I am unable find an end-of-file equivalent character/symbol in the loaded file
         else if(cargo === 'EOF') {
