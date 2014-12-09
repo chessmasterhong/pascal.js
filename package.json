@@ -4,6 +4,7 @@
   "description": "A Pascal compiler written in JavaScript.",
   "author": "Kevin Chan",
   "license": "MIT",
+  "private": true,
   "homepage": "https://github.com/chessmasterhong/pascal.js",
   "repository": {
     "type": "git",
