@@ -48,10 +48,12 @@ define('modules/character', [], function() {
 
         if(cargo === ' ') {
             cargo = '  SPACE';
-        } else if(cargo === '\n') {
-            cargo = '  NEWLINE';
         } else if(cargo === '\t') {
             cargo = '  TAB';
+        } else if(cargo === '\n') {
+            cargo = '  LINE FEED';
+        } else if(cargo === '\r') {
+            cargo = '  CARRIAGE RETURN';
         }
         /* NOTE: I am unable find an end-of-file equivalent character/symbol in the loaded file
         else if(cargo === 'EOF') {

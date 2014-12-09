@@ -101,14 +101,13 @@ define('modules/init', [
     function lexerDriver(contents) {
         var lexer = new Lexer(contents);
 
-        //while(true) {
+        while(true) {
             var token = lexer.get();
-            console.log(token);
 
-            //if(token === '  EOF') {
-            //    break;
-            //}
-        //}
+            if(token.cargo === '  EOF') {
+                break;
+            }
+        }
     }
 
     return Init;
