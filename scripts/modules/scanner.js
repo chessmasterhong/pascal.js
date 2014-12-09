@@ -46,12 +46,26 @@ define('modules/scanner', [
         if(this.srcIndex > this.finalIndex) {
             char = new Character(window.TOKENS.EOF , this.lineIndex, this.colIndex, this.srcIndex, this.srcText);
         } else {
-            var c = this.srcText[this.srcIndex];
-            char = new Character(c, this.lineIndex, this.colIndex, this.srcIndex, this.srcText);
+            char = new Character(this.srcText[this.srcIndex], this.lineIndex, this.colIndex, this.srcIndex, this.srcText);
         }
 
         return char.convertToString();
     };
+
+    Scanner.prototype.lookahead = function() {
+        var nextSrcIndex  = this.srcIndex + 1,
+            nextLineIndex = this.lineIndex + 1,
+            nextColIndex  = this.colIndex + 1;
+
+        var char;
+        if(nextSrcIndex > this.finalIndex) {
+            char = new Character(window.TOKENS.EOF , nextLineIndex, nextColIndex, nextSrcIndex, this.srcText);
+        } else {
+            char = new Character(this.srcText[nextSrcIndex], nextLineIndex, nextColIndex, nextSrcIndex, this.srcText);
+        }
+
+        return char.convertToString();
+    }
 
     return Scanner;
 });

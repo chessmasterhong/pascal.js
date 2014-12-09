@@ -23,7 +23,7 @@ define('modules/init', [
             'TAB'  : 'TK_TAB',
             'LF'   : 'TK_LINE_FEED',
             'CR'   : 'TK_CARRIAGE_RETURN'
-        }
+        };
     }
 
     Init.prototype = {};
@@ -59,7 +59,7 @@ define('modules/init', [
                 console.log('File Type: ' + file.type);
                 console.log('File Size: ' + file.size + ' bytes');
 
-                scannerDriver(e.target.result);
+                //scannerDriver(e.target.result);
                 lexerDriver(e.target.result);
             };
 
