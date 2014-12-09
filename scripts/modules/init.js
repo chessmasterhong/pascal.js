@@ -109,13 +109,19 @@ define('modules/init', [
 
     function lexerDriver(contents) {
         var lexer = new Lexer(contents);
+        var token = lexer.get();
+
+        var output = document.getElementById('output');
+        output.innerHTML = 'LINE COL         CHARACTER  TOKEN\n';
 
         while(true) {
-            var token = lexer.get();
+            output.innerHTML += ('    ' + token.lineIndex).slice(-4) + ' ' + ('    ' + token.colIndex).slice(-3) + '  ' + ('                ' + token.cargo).slice(-16) + '  ' + token.tokenType + '\n';
 
             if(token.cargo === window.TOKENS.EOF) {
                 break;
             }
+
+            token = lexer.get();
         }
     }
 
