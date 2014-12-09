@@ -89,7 +89,7 @@ define('modules/init', [
             output.innerHTML += ('    ' + character.lineIndex).slice(-4) + ' ' + ('    ' + character.colIndex).slice(-3) + '  ' + character.cargo + '\n';
 
             // End case. End of file reached, stop the driver.
-            if(character.cargo === '  EOF') {
+            if(character.cargo === 'TK_EOF') {
                 break;
             }
 
@@ -104,7 +104,7 @@ define('modules/init', [
         while(true) {
             var token = lexer.get();
 
-            if(token.cargo === '  EOF') {
+            if(token.cargo === 'TK_EOF') {
                 break;
             }
         }

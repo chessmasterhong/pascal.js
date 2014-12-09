@@ -53,10 +53,10 @@ define('modules/token', [
             //this.cargo === '\t' || // Tab
             //this.cargo === '\n' || // Line Feed
             //this.cargo === '\r'    // Carriage Return
-            this.cargo === '  SPACE' ||
-            this.cargo === '  TAB' ||
-            this.cargo === '  LINE FEED' ||
-            this.cargo === '  CARRIAGE RETURN'
+            this.cargo === 'TK_SPACE' ||
+            this.cargo === 'TK_TAB' ||
+            this.cargo === 'TK_LINE FEED' ||
+            this.cargo === 'TK_CARRIAGE RETURN'
         );
     };
 
@@ -71,8 +71,8 @@ define('modules/token', [
         );
     };
 
-    Token.prototype.isAlphaNumeric = function() {
-        return this.isAlpha(this.cargo) && this.isDigit(this.cargo);
+    Token.prototype.isAlphanumeric = function() {
+        return this.isAlpha(this.cargo) || this.isDigit(this.cargo);
     };
 
     return Token;
