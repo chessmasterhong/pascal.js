@@ -50,8 +50,8 @@ define('modules/init', [
                 console.log('File Type: ' + file.type);
                 console.log('File Size: ' + file.size + ' bytes');
 
-                scannerDriver(e.target.result);
-                //lexerDriver(e.target.result);
+                //scannerDriver(e.target.result);
+                lexerDriver(e.target.result);
             };
 
             // Fire onerror event if error occurred while reading file
