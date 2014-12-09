@@ -29,6 +29,12 @@ define('modules/token', [
         this.lineIndex = startChar.lineIndex;
         this.colIndex  = startChar.colIndex;
         this.tokenType = null;
+
+        if(this.isWhitespace()) {
+            this.tokenType = 'Whitespace';
+        } else if(this.isAlphanumeric()) {
+            this.tokenType = 'Alphanumeric';
+        }
     }
 
     Token.prototype = {};

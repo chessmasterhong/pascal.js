@@ -65,7 +65,7 @@ define('modules/scanner', [
         }
 
         return char.convertToString();
-    }
+    };
 
     return Scanner;
 });
