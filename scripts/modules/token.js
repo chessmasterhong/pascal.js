@@ -49,10 +49,14 @@ define('modules/token', [
 
     Token.prototype.isWhitespace = function() {
         return (
-            this.cargo === ' ' ||  // Space
-            this.cargo === '\t' || // Tab
-            this.cargo === '\n' || // Line Feed
-            this.cargo === '\r'    // Carriage Return
+            //this.cargo === ' ' ||  // Space
+            //this.cargo === '\t' || // Tab
+            //this.cargo === '\n' || // Line Feed
+            //this.cargo === '\r'    // Carriage Return
+            this.cargo === '  SPACE' ||
+            this.cargo === '  TAB' ||
+            this.cargo === '  LINE FEED' ||
+            this.cargo === '  CARRIAGE RETURN'
         );
     };
 

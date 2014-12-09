@@ -15,12 +15,20 @@ define('modules/lexer', [
 
         this.token = new Token(character);
 
+        //test
+        if(this.token.isWhitespace(character)) {
+            console.log(character.cargo + ': whitespace');
+        } else if(this.token.isAlphanumeric(character)) {
+            console.log(character.cargo + ': alphanumeric');
+        }
+
         while(this.token.isWhitespace(character)) {
             if(character === '  EOF') {
                 return new Token(null);
             }
 
             character = this.scanner.get();
+            this.token = new Token(character);
         }
 
         return character;
