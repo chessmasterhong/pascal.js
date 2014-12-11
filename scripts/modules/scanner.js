@@ -1,8 +1,4 @@
 /**
- * The Scanner is responsible for reading the source file one character at a
- *     time. For each character, it keeps track of the line, column, and
- *     position where the character was found. Each time the scanner is called,
- *     it reads the next character from the file and returns it.
  * @module modules/scanner
  */
 define('modules/scanner', [
@@ -11,7 +7,10 @@ define('modules/scanner', [
     'use strict';
 
     /**
-     * WRITEME
+     * The Scanner class reads the source file one character at time. For each
+     *     character, it keeps track of the line, column, and position where the
+     *     character was found. Each time the scanner is called, it reads the
+     *     next character from the file and returns it.
      * @class Scanner
      * @param {String} srcText The entire source text to be scanned.
      */
@@ -26,7 +25,7 @@ define('modules/scanner', [
     Scanner.prototype = {};
 
     /**
-     * Gets information of the next character in srcText.
+     * Gets the next character in srcText.
      * @function
      * @returns {CharacterObject} _ The information about this character converted to a displayable string representation.
      */

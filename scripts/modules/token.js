@@ -1,6 +1,9 @@
+/**
+ * @module modules/token
+ */
 define('modules/token', [
     'modules/character'
-], function(Character) {
+], function() {
     'use strict';
 
     var KEYWORDS = [
@@ -23,6 +26,14 @@ define('modules/token', [
         '.'
     ];
 
+    /**
+     * The Token class wraps its cargo (a string of characters) and holds
+     *     information about the token. For each token, it holds the text of the
+     *     token, the token's type, and the initial position (line number and
+     *     column number) where the token starts.
+     * @class Token
+     * @param {String} startChar The starting character
+     */
     function Token(startChar) {
         this.cargo     = startChar.cargo;
         this.srcText   = startChar.srcText;
