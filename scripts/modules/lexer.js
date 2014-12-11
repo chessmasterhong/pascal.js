@@ -11,17 +11,16 @@ define('modules/lexer', [
     Lexer.prototype = {};
 
     Lexer.prototype.get = function() {
-        var character = this.scanner.get();
-        var token = new Token(character);
+        var character, token;
 
-        while(token.isWhitespace(character)) {
+        do {
             if(character === window.TOKENS.EOF) {
                 return new Token(null);
             }
 
             character = this.scanner.get();
             token = new Token(character);
-        }
+        } while(token.isWhitespace(character));
 
         return token;
     };

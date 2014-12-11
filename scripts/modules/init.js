@@ -88,41 +88,43 @@ define('modules/init', [
     function scannerDriver(contents) {
         // Initialize the Scanner
         var scanner = new Scanner(contents);
-        var character = scanner.get(); // Feed first character in source file to Scanner
 
         var output = document.getElementById('output');
         output.innerHTML = 'LINE COL  CHARACTER\n';
 
+        var character;
+
         // Drive the Scanner to traverse through each character in source file until end of file
-        while(true) {
+        do {
+            // Get next character in source file.
+            character = scanner.get();
+
             output.innerHTML += ('    ' + character.lineIndex).slice(-4) + ' ' + ('    ' + character.colIndex).slice(-3) + '  ' + character.cargo + '\n';
 
             // End case. End of file reached, stop the driver.
             if(character.cargo === window.TOKENS.EOF) {
                 break;
             }
-
-            // Incremental step. Get next character in source file.
-            character = scanner.get();
-        }
+        } while(true);
     }
 
     function lexerDriver(contents) {
         var lexer = new Lexer(contents);
-        var token = lexer.get();
 
         var output = document.getElementById('output');
         output.innerHTML = 'LINE COL         CHARACTER  TOKEN\n';
 
-        while(true) {
+        var token;
+
+        do {
+            token = lexer.get();
+
             output.innerHTML += ('    ' + token.lineIndex).slice(-4) + ' ' + ('    ' + token.colIndex).slice(-3) + '  ' + ('                ' + token.cargo).slice(-16) + '  ' + token.tokenType + '\n';
 
             if(token.cargo === window.TOKENS.EOF) {
                 break;
             }
-
-            token = lexer.get();
-        }
+        } while(true);
     }
 
     return Init;
