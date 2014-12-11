@@ -13,14 +13,14 @@ The purpose of this project is to provide a web-based solution for compiling Pas
 ### General Installation
 
 1.  An Internet connection to load the web page.
-2.  A web browser capable of using the [File API](http://www.w3.org/TR/FileAPI/). An error will pop-up on the web page if your browser does not.
+2.  A web browser capable of using the [File API](http://caniuse.com/#feat=fileapi). An error will pop-up on the web page if your browser does not.
 
 
 ### Development Installation
 
 1.  A web server must be installed to serve the main web page. Any web server is fine (Python's [SimpleHTTPServer](https://docs.python.org/2/library/simplehttpserver.html), [Apache HTTP Server](http://httpd.apache.org/), PHP 5.4.0's [built-in web server](http://php.net/manual/en/features.commandline.webserver.php), Node.js with [http-server](https://github.com/nodeapps/http-server), [XAMPP](https://www.apachefriends.org/index.html)/LAMP/WAMP/MAMP, ...you get the idea).
 2.  Clone this repository and its contents to your web server directory.
-3.  Visit the web page from your browser of choice. Browser must support the [File API](http://www.w3.org/TR/FileAPI/). An error will pop-up on the web page if your browser does not.
+3.  Visit the web page from your browser of choice. Browser must support the [File API](http://caniuse.com/#feat=fileapi). An error will pop-up on the web page if your browser does not.
 4.  **(OPTIONAL)** For utilizing the development build process:
   1.  Install [Node.js](http://nodejs.org/).
   2.  Open a terminal in project's root directory (same directory where this readme is located in).
@@ -58,7 +58,7 @@ TODO
 
 ### Documentations
 
-* [W3C File API Documentation](http://www.w3.org/TR/FileAPI/)
+* [W3C File API Specification](http://www.w3.org/TR/FileAPI/)
 
 
 ## License and Credits
