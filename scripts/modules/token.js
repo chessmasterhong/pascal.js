@@ -66,6 +66,11 @@ define('modules/token', [
         return s;
     };
 
+    /**
+     * Determines if the cargo is a whitespace character.
+     * @function
+     * @returns {Boolean} _ True if whitespace, false otherwise.
+     */
     Token.prototype.isWhitespace = function() {
         return (
             //this.cargo === ' ' ||  // Space
@@ -79,10 +84,18 @@ define('modules/token', [
         );
     };
 
+    /**
+     * Determines if the cargo is a numerical digit.
+     * @returns {Boolean} _ True if digit, false otherwise.
+     */
     Token.prototype.isDigit = function() {
         return this.cargo >= '0' && this.cargo <= '9';
     };
 
+    /**
+     * Determines if the cargo is a letter in the English alphabet.
+     * @returns {Boolean} _ True if letter, false otherwise.
+     */
     Token.prototype.isAlpha = function() {
         return (
             (this.cargo >= 'a' && this.cargo <= 'z') ||
@@ -90,6 +103,11 @@ define('modules/token', [
         );
     };
 
+    /**
+     * Determines if the cargo is an alphanumeric character (either a letter in
+     * the English alphabet or a numerical digit)
+     * @returns {Boolean} _ True if alphanumeric, false otherwise.
+     */
     Token.prototype.isAlphanumeric = function() {
         return this.isAlpha(this.cargo) || this.isDigit(this.cargo);
     };
