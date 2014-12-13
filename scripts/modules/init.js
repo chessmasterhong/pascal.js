@@ -54,10 +54,10 @@ define('modules/init', [
 
             // Fire onload event when file has been successfully read
             reader.onload = function(e) {
-                console.log('File was successfully loaded.');
-                console.log('File Name: ' + file.name);
-                console.log('File Type: ' + file.type);
-                console.log('File Size: ' + file.size + ' bytes');
+                window.OUTPUT.innerHTML += 'File was successfully loaded.\n';
+                window.OUTPUT.innerHTML += 'File Name: ' + file.name + '\n';
+                window.OUTPUT.innerHTML += 'File Type: ' + file.type + '\n';
+                window.OUTPUT.innerHTML += 'File Size: ' + file.size + ' bytes\n';
 
                 //scannerDriver(e.target.result);
                 lexerDriver(e.target.result);
@@ -89,7 +89,7 @@ define('modules/init', [
         // Initialize the Scanner
         var scanner = new Scanner(contents);
 
-        window.OUTPUT.innerHTML = 'LINE COL  CHARACTER\n';
+        window.OUTPUT.innerHTML += 'LINE COL  CHARACTER\n';
 
         var character;
 
@@ -119,7 +119,7 @@ define('modules/init', [
         // Initialize the Lexer
         var lexer = new Lexer(contents);
 
-        window.OUTPUT.innerHTML = 'LINE COL         CHARACTER  TOKEN\n';
+        window.OUTPUT.innerHTML += 'LINE COL         CHARACTER  TOKEN\n';
 
         var token;
 
