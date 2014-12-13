@@ -15,7 +15,8 @@ define('modules/init', [
      * @class Init
      */
     function Init() {
-        // Globals
+        window.OUTPUT = document.getElementById('output');
+
         window.TOKENS = {
             'EOF'  : 'TK_END_OF_FILE',
             'SPACE': 'TK_SPACE',
@@ -88,8 +89,7 @@ define('modules/init', [
         // Initialize the Scanner
         var scanner = new Scanner(contents);
 
-        var output = document.getElementById('output');
-        output.innerHTML = 'LINE COL  CHARACTER\n';
+        window.OUTPUT.innerHTML = 'LINE COL  CHARACTER\n';
 
         var character;
 
@@ -98,7 +98,7 @@ define('modules/init', [
             // Get next character in source file.
             character = scanner.get();
 
-            output.innerHTML += ('    ' + character.lineIndex).slice(-4) + ' ' + ('    ' + character.colIndex).slice(-3) + '  ' + character.cargo + '\n';
+            window.OUTPUT.innerHTML += ('    ' + character.lineIndex).slice(-4) + ' ' + ('    ' + character.colIndex).slice(-3) + '  ' + character.cargo + '\n';
 
             // End of file reached, stop the driver.
             if(character.cargo === window.TOKENS.EOF) {
@@ -119,8 +119,7 @@ define('modules/init', [
         // Initialize the Lexer
         var lexer = new Lexer(contents);
 
-        var output = document.getElementById('output');
-        output.innerHTML = 'LINE COL         CHARACTER  TOKEN\n';
+        window.OUTPUT.innerHTML = 'LINE COL         CHARACTER  TOKEN\n';
 
         var token;
 
@@ -129,7 +128,7 @@ define('modules/init', [
             // Get next token in source file.
             token = lexer.get();
 
-            output.innerHTML += ('    ' + token.lineIndex).slice(-4) + ' ' + ('    ' + token.colIndex).slice(-3) + '  ' + ('                ' + token.cargo).slice(-16) + '  ' + token.tokenType + '\n';
+            window.OUTPUT.innerHTML += ('    ' + token.lineIndex).slice(-4) + ' ' + ('    ' + token.colIndex).slice(-3) + '  ' + ('                ' + token.cargo).slice(-16) + '  ' + token.tokenType + '\n';
 
             // End of file reached, stop the driver.
             if(token.cargo === window.TOKENS.EOF) {
