@@ -36,9 +36,29 @@ define('modules/lexer', [
 
             character = this.scanner.get();
             token = new Token(character);
-
-            console.log(token.cargo + ' ' + token.isSymbol())
         } while(token.isWhitespace(character));
+
+        // Temporary lookahead character
+        var characterTemp = character.cargo + this.scanner.lookahead().cargo;
+
+        // Search through all registered symbols
+        for(var i = 0; i < window.SYMBOLS.length; i++) {
+            var symbol = window.SYMBOLS[i];
+
+            // If chrrent 2-character matches a 2-character registered symbol
+            if((symbol.length === 2 && symbol === characterTemp)) {
+                console.log('2-char: ' + symbol);
+
+                // Advance Scanner index by one character (but do not track it)
+                this.scanner.get();
+
+                // Matching symbol found, break loop (otherwise it will search through 1-character symbols)
+                break;
+            // If current 1-character matches a 1-character registered symbol
+            } else if(symbol.length === 1 && symbol === character.cargo) {
+                console.log('1-char: ' + symbol);
+            }
+        }
 
         return token;
     };

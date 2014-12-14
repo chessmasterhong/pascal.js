@@ -33,15 +33,20 @@ define('modules/init', [
         ];
 
         window.SYMBOLS = [
-            '+', '-', '*', '/',              // Arithmetic Operators
-            '=', '<>', '<', '>', '<=', '>=', // Relational Operators
-            '{', '}', '(*', '*)',            // Comments
-            '[', ']',                        // Arrays
-            '(', ')',                        // Groups
-            '\'', '"',                       // String Literals
-            ':=',                            // Assignments
-            '^',                             // Pointers
-            ',', ':',  ';',                  // Separators
+            // 2-character symbols
+            '<>', '<=', '>=',   // Relational Operators (2-char)
+            '(*', '*)',         // Comments (2-char)
+            ':=',               // Assignments
+
+            // 1-character symbols
+            '=', '<', '>',      // Relational Operators (1-char)
+            '{', '}',           // Comments (1-char)
+            '+', '-', '*', '/', // Arithmetic Operators
+            '[', ']',           // Arrays
+            '(', ')',           // Groups
+            '\'', '"',          // String Literals
+            '^',                // Pointers
+            ',', ':',  ';',     // Separators
             '.'
         ];
     }
