@@ -36,6 +36,8 @@ define('modules/lexer', [
 
             character = this.scanner.get();
             token = new Token(character);
+
+            console.log(token.cargo + ' ' + token.isSymbol())
         } while(token.isWhitespace(character));
 
         return token;

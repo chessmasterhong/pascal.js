@@ -112,5 +112,9 @@ define('modules/token', [
         return this.isAlpha(this.cargo) || this.isDigit(this.cargo);
     };
 
+    Token.prototype.isSymbol = function() {
+        return SYMBOLS.indexOf(this.cargo) !== -1 ? true : false;
+    };
+
     return Token;
 });
