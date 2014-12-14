@@ -24,6 +24,26 @@ define('modules/init', [
             'LF'   : 'TK_LINE_FEED',
             'CR'   : 'TK_CARRIAGE_RETURN'
         };
+
+        window.KEYWORDS = [
+            'and', 'array', 'begin', 'case', 'const', 'div', 'do', 'downto', 'else',
+            'end', 'file', 'for', 'function', 'goto', 'if', 'in', 'label', 'mod',
+            'nil', 'not', 'of', 'packed', 'procedure', 'program', 'record',
+            'repeat', 'set', 'then', 'to', 'type', 'until', 'var', 'while', 'with'
+        ];
+
+        window.SYMBOLS = [
+            '+', '-', '*', '/',              // Arithmetic Operators
+            '=', '<>', '<', '>', '<=', '>=', // Relational Operators
+            '{', '}', '(*', '*)',            // Comments
+            '[', ']',                        // Arrays
+            '(', ')',                        // Groups
+            '\'', '"',                       // String Literals
+            ':=',                            // Assignments
+            '^',                             // Pointers
+            ',', ':',  ';',                  // Separators
+            '.'
+        ];
     }
 
     Init.prototype = {};

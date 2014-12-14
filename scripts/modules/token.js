@@ -6,26 +6,6 @@ define('modules/token', [
 ], function() {
     'use strict';
 
-    var KEYWORDS = [
-        'and', 'array', 'begin', 'case', 'const', 'div', 'do', 'downto', 'else',
-        'end', 'file', 'for', 'function', 'goto', 'if', 'in', 'label', 'mod',
-        'nil', 'not', 'of', 'packed', 'procedure', 'program', 'record',
-        'repeat', 'set', 'then', 'to', 'type', 'until', 'var', 'while', 'with'
-    ];
-
-    var SYMBOLS = [
-        '+', '-', '*', '/',              // Arithmetic Operators
-        '=', '<>', '<', '>', '<=', '>=', // Relational Operators
-        '{', '}', '(*', '*)',            // Comments
-        '[', ']',                        // Arrays
-        '(', ')',                        // Groups
-        '\'', '"',                       // String Literals
-        ':=',                            // Assignments
-        '^',                             // Pointers
-        ',', ':',  ';',                  // Separators
-        '.'
-    ];
-
     /**
      * The Token class wraps its cargo (a string of characters) and holds
      *     information about the token. For each token, it holds the text of the
@@ -47,6 +27,8 @@ define('modules/token', [
             this.tokenType = 'Whitespace';
         } else if(this.isAlphanumeric()) {
             this.tokenType = 'Alphanumeric';
+        } else if(this.isSymbol()) {
+            this.tokenType = 'Symbol';
         }
     }
 
@@ -113,7 +95,7 @@ define('modules/token', [
     };
 
     Token.prototype.isSymbol = function() {
-        return SYMBOLS.indexOf(this.cargo) !== -1 ? true : false;
+        return window.SYMBOLS.indexOf(this.cargo) !== -1 ? true : false;
     };
 
     return Token;
