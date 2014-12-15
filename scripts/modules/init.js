@@ -30,23 +30,34 @@ define('modules/init', [
 
         window.SYMBOLS = {
             // 2-character symbols
-            //'<>', '<=', '>=',   // Relational Operators (2-char)
-            //'(*', '*)',         // Comments (2-char)
-            //':=',               // Assignments
+            '(*': 'TK_COMMENT_BEGIN',
+            '*)': 'TK_COMMENT_END',
+            '<>': 'TK_NOT_EQUAL',
+            '<=': 'TK_LESS_THAN_OR_EQUAL',
+            '>=': 'TK_GREATER_THAN_OR_EQUAL',
+            ':=': 'TK_ASSIGNMENT',
 
             // 1-character symbols
-            //'=', '<', '>',      // Relational Operators (1-char)
-            //'{', '}',           // Comments (1-char)
-            //'+', '-', '*', '/', // Arithmetic Operators
-            //'[', ']',           // Arrays
-            //'(', ')',           // Groups
-            //'\'', '"',          // String Literals
-            //'^',                // Pointers
-            //',', ':',  ';',     // Separators
-            //'.'
-
-            '(*': 'TK_COMMENT_BEGIN',
-            '*)': 'TK_COMMENT_END'
+            '=' : 'TK_EQUAL',
+            '<' : 'TK_LESS_THAN',
+            '>' : 'TK_GREATER_THAN',
+            '{' : 'TK_COMMENT_BEGIN',
+            '}' : 'TK_COMMENT_END',
+            '+' : 'TK_ADD',
+            '-' : 'TK_SUBTRACT',
+            '*' : 'TK_MULTIPLY',
+            '/' : 'TK_DIVIDE_FLOAT',
+            '[' : 'TK_BRACKET_OPEN',
+            ']' : 'TK_BRACKET_CLOSE',
+            '(' : 'TK_PARENTHESIS_OPEN',
+            ')' : 'TK_PARENTHESIS_CLOSE',
+            '\'': 'TK_QUOTE_SINGLE',
+            '"' : 'TK_QUOTE_DOUBLE',
+            '^' : 'TK_CARET',
+            ',' : 'TK_COMMA',
+            ':' : 'TK_COLON',
+            ';' : 'TK_SEMICOLON',
+            '.' : 'TK_END_OF_PROGRAM'
         };
     }
 
