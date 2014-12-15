@@ -90,6 +90,10 @@ define('modules/token', [
         return this.isAlpha(this.cargo) || this.isDigit(this.cargo);
     };
 
+    /**
+     * Determines if the cargo is a registered symbol
+     * @return {String|Boolean} _ String representation of symbol if true, false if not a registered symbol
+     */
     Token.prototype.isSymbol = function() {
         //return window.SYMBOLS.indexOf(this.cargo) !== -1 ? true : false;
 
