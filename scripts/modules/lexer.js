@@ -27,7 +27,7 @@ define('modules/lexer', [
      * @returns {TokenObject} _ The information about this token.
      */
     Lexer.prototype.get = function() {
-        var character, token, symbol;
+        var character, token, c1, c2;
 
         // Ignore whitespaces
         do {
@@ -39,11 +39,44 @@ define('modules/lexer', [
             // Get next character and construct token
             character = this.scanner.get();
             token = new Token(character);
-        } while(token.isWhitespace(character));
 
-        // ==============
-        // SYMBOL BUILDER
-        // ==============
+            // ===============
+            // COMMENT BUILDER
+            // ===============
+            c1 = this.nextSymbol(character);
+
+            if(c1 && c1.cargo === '(*') {
+                token.cargo = c1.cargo;
+                token.tokenType = 'TK_COMMENT';
+
+                character = this.scanner.get();
+
+                c2 = this.nextSymbol(character);
+
+                while(!c2 || c2.cargo !== '*)') {
+                    if(c1.cargo === 'EOF') {
+                        console.log('Found end of file before end of comment.');
+                        break;
+                    } else {
+                        token.cargo += character.cargo;
+                        character = this.scanner.get();
+                        c2 = this.nextSymbol(character);
+                    }
+                }
+
+                token.cargo += c2.cargo;
+                character = this.scanner.get();
+            }
+        } while(token.isWhitespace(character) || (c1 && c1.cargo === '(*'));
+
+        return token;
+    };
+
+    Lexer.prototype.nextSymbol = function(character) {
+        var symbol, sym;
+
+        var token = new Token(character);
+
         // If first character of symbol is not alphanumeric (symbols cannot be alphanumeric to begin with)
         if(!token.isAlphanumeric()) {
             // Temporary lookahead character
@@ -56,7 +89,7 @@ define('modules/lexer', [
                 // If chrrent 2-character matches a 2-character registered symbol
                 if((symbol.length === 2 && symbol === characterTemp)) {
                     // Construct new 2-character token
-                    token = new Token({
+                    sym = new Token({
                         cargo    : characterTemp,
                         srcText  : character.srcText,
                         lineIndex: character.lineIndex,
@@ -68,10 +101,11 @@ define('modules/lexer', [
 
                     // Matching symbol found, break loop (otherwise it will search through 1-character symbols)
                     break;
+                }
                 // If current 1-character matches a 1-character registered symbol
-                } else if(symbol.length === 1 && symbol === character.cargo) {
+                else if(symbol.length === 1 && symbol === character.cargo) {
                     // Construct new 1-character token
-                    token = new Token({
+                    sym = new Token({
                         cargo    : character.cargo,
                         srcText  : character.srcText,
                         lineIndex: character.lineIndex,
@@ -81,7 +115,7 @@ define('modules/lexer', [
             }
         }
 
-        return token;
+        return sym;
     };
 
     return Lexer;
