@@ -41,37 +41,43 @@ define('modules/lexer', [
             token = new Token(character);
         } while(token.isWhitespace(character));
 
-        // Temporary lookahead character
-        var characterTemp = character.cargo + this.scanner.lookahead().cargo;
+        // ==============
+        // SYMBOL BUILDER
+        // ==============
+        // If first character of symbol is not alphanumeric (symbols cannot be alphanumeric to begin with)
+        if(!token.isAlphanumeric()) {
+            // Temporary lookahead character
+            var characterTemp = character.cargo + this.scanner.lookahead().cargo;
 
-        // Search through all registered symbols
-        for(var i = 0; i < window.SYMBOLS.length; i++) {
-            symbol = window.SYMBOLS[i];
+            // Search through all registered symbols
+            for(var i = 0; i < window.SYMBOLS.length; i++) {
+                symbol = window.SYMBOLS[i];
 
-            // If chrrent 2-character matches a 2-character registered symbol
-            if((symbol.length === 2 && symbol === characterTemp)) {
-                // Construct new 2-character token
-                token = new Token({
-                    cargo    : characterTemp,
-                    srcText  : character.srcText,
-                    lineIndex: character.lineIndex,
-                    colIndex : character.colIndex,
-                });
+                // If chrrent 2-character matches a 2-character registered symbol
+                if((symbol.length === 2 && symbol === characterTemp)) {
+                    // Construct new 2-character token
+                    token = new Token({
+                        cargo    : characterTemp,
+                        srcText  : character.srcText,
+                        lineIndex: character.lineIndex,
+                        colIndex : character.colIndex,
+                    });
 
-                // Advance Scanner index by one character (but do not track it)
-                this.scanner.get();
+                    // Advance Scanner index by one character (but do not track it)
+                    this.scanner.get();
 
-                // Matching symbol found, break loop (otherwise it will search through 1-character symbols)
-                break;
-            // If current 1-character matches a 1-character registered symbol
-            } else if(symbol.length === 1 && symbol === character.cargo) {
-                // Construct new 1-character token
-                token = new Token({
-                    cargo    : character.cargo,
-                    srcText  : character.srcText,
-                    lineIndex: character.lineIndex,
-                    colIndex : character.colIndex,
-                });
+                    // Matching symbol found, break loop (otherwise it will search through 1-character symbols)
+                    break;
+                // If current 1-character matches a 1-character registered symbol
+                } else if(symbol.length === 1 && symbol === character.cargo) {
+                    // Construct new 1-character token
+                    token = new Token({
+                        cargo    : character.cargo,
+                        srcText  : character.srcText,
+                        lineIndex: character.lineIndex,
+                        colIndex : character.colIndex,
+                    });
+                }
             }
         }
 
