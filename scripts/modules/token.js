@@ -21,7 +21,7 @@ define('modules/token', [
         this.colIndex  = startChar.colIndex;
         this.tokenType = null;
 
-        if(this.cargo === window.TOKENS.EOF) {
+        if(this.cargo === 'EOF') {
             this.tokenType = 'End of file';
         } else if(this.isWhitespace()) {
             this.tokenType = 'Whitespace';
@@ -55,14 +55,10 @@ define('modules/token', [
      */
     Token.prototype.isWhitespace = function() {
         return (
-            //this.cargo === ' ' ||  // Space
-            //this.cargo === '\t' || // Tab
-            //this.cargo === '\n' || // Line Feed
-            //this.cargo === '\r'    // Carriage Return
-            this.cargo === window.TOKENS.SPACE ||
-            this.cargo === window.TOKENS.TAB ||
-            this.cargo === window.TOKENS.LF ||
-            this.cargo === window.TOKENS.CR
+            this.cargo === '  SPACE  ' ||
+            this.cargo === '  TAB  ' ||
+            this.cargo === '  LF  ' ||
+            this.cargo === '  CR  '
         );
     };
 

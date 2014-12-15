@@ -17,13 +17,9 @@ define('modules/init', [
     function Init() {
         window.OUTPUT = document.getElementById('output');
 
-        window.TOKENS = {
-            'EOF'  : 'TK_END_OF_FILE',
-            'SPACE': 'TK_SPACE',
-            'TAB'  : 'TK_TAB',
-            'LF'   : 'TK_LINE_FEED',
-            'CR'   : 'TK_CARRIAGE_RETURN'
-        };
+        window.WHITESPACES = [
+            ' ', '\t', '\n', '\r'
+        ];
 
         window.KEYWORDS = [
             'and', 'array', 'begin', 'case', 'const', 'div', 'do', 'downto', 'else',
@@ -126,7 +122,7 @@ define('modules/init', [
             window.OUTPUT.innerHTML += ('    ' + character.lineIndex).slice(-4) + ' ' + ('    ' + character.colIndex).slice(-3) + '  ' + character.cargo + '\n';
 
             // End of file reached, stop the driver.
-            if(character.cargo === window.TOKENS.EOF) {
+            if(character.cargo === 'EOF') {
                 break;
             }
         } while(true);
@@ -156,7 +152,7 @@ define('modules/init', [
             window.OUTPUT.innerHTML += ('    ' + token.lineIndex).slice(-4) + ' ' + ('    ' + token.colIndex).slice(-3) + '  ' + ('                ' + token.cargo).slice(-16) + '  ' + token.tokenType + '\n';
 
             // End of file reached, stop the driver.
-            if(token.cargo === window.TOKENS.EOF) {
+            if(token.cargo === 'EOF') {
                 break;
             }
         } while(true);

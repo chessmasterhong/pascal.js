@@ -29,14 +29,14 @@ define('modules/lexer', [
     Lexer.prototype.get = function() {
         var character, token;
 
-        do {
-            if(character === window.TOKENS.EOF) {
+        //do {
+            if(character === 'EOF') {
                 return new Token(null);
             }
 
             character = this.scanner.get();
             token = new Token(character);
-        } while(token.isWhitespace(character));
+        //} while(token.isWhitespace(character));
 
         // Temporary lookahead character
         var characterTemp = character.cargo + this.scanner.lookahead().cargo;
@@ -47,7 +47,7 @@ define('modules/lexer', [
 
             // If chrrent 2-character matches a 2-character registered symbol
             if((symbol.length === 2 && symbol === characterTemp)) {
-                console.log('2-char: ' + symbol);
+                //console.log('2-char: ' + symbol);
 
                 // Advance Scanner index by one character (but do not track it)
                 this.scanner.get();
@@ -56,7 +56,7 @@ define('modules/lexer', [
                 break;
             // If current 1-character matches a 1-character registered symbol
             } else if(symbol.length === 1 && symbol === character.cargo) {
-                console.log('1-char: ' + symbol);
+                //console.log('1-char: ' + symbol);
             }
         }
 

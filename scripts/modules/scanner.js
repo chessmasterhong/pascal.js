@@ -43,7 +43,7 @@ define('modules/scanner', [
 
         var char;
         if(this.srcIndex > this.finalIndex) {
-            char = new Character(window.TOKENS.EOF , this.lineIndex, this.colIndex, this.srcIndex, this.srcText);
+            char = new Character('EOF' , this.lineIndex, this.colIndex, this.srcIndex, this.srcText);
         } else {
             char = new Character(this.srcText[this.srcIndex], this.lineIndex, this.colIndex, this.srcIndex, this.srcText);
         }
@@ -58,7 +58,7 @@ define('modules/scanner', [
 
         var char;
         if(nextSrcIndex > this.finalIndex) {
-            char = new Character(window.TOKENS.EOF , nextLineIndex, nextColIndex, nextSrcIndex, this.srcText);
+            char = new Character('EOF' , nextLineIndex, nextColIndex, nextSrcIndex, this.srcText);
         } else {
             char = new Character(this.srcText[nextSrcIndex], nextLineIndex, nextColIndex, nextSrcIndex, this.srcText);
         }

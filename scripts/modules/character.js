@@ -47,18 +47,14 @@ define('modules/character', [], function() {
         var cargo = this.cargo;
 
         if(cargo === ' ') {
-            cargo = window.TOKENS.SPACE;
+            cargo = '  SPACE  ';
         } else if(cargo === '\t') {
-            cargo = window.TOKENS.TAB;
+            cargo = '  TAB  ';
         } else if(cargo === '\n') {
-            cargo = window.TOKENS.LF;
+            cargo = '  LF  ';
         } else if(cargo === '\r') {
-            cargo = window.TOKENS.CR;
+            cargo = '  CR  ';
         }
-        /* NOTE: I am unable find an end-of-file equivalent character/symbol in the loaded file
-        else if(cargo === 'EOF') {
-            cargo = '  EOF';
-        }*/
 
         return {
             lineIndex: this.lineIndex,
