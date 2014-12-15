@@ -28,7 +28,7 @@ define('modules/token', [
         } else if(this.isAlphanumeric()) {
             this.tokenType = 'Alphanumeric';
         } else if(this.isSymbol()) {
-            this.tokenType = 'Symbol';
+            this.tokenType = this.isSymbol();
         }
     }
 
@@ -91,7 +91,15 @@ define('modules/token', [
     };
 
     Token.prototype.isSymbol = function() {
-        return window.SYMBOLS.indexOf(this.cargo) !== -1 ? true : false;
+        //return window.SYMBOLS.indexOf(this.cargo) !== -1 ? true : false;
+
+        // 1. Get list of registered symbols in raw format object
+        // 2. Convert list of raw symbols and convert to array of registered symbols
+        // 3. Get index of cargo in registered symbols array (returns number if found or false if not)
+        // 4. Get key of registered symbol in raw format object (returns string)
+        // 5. Get value of registered symbol in raw format object (returns string)
+        var symbols = Object.keys(window.SYMBOLS);
+        return window.SYMBOLS[symbols[symbols.indexOf(this.cargo)]] || false;
     };
 
     return Token;

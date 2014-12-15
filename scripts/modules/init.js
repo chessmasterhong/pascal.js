@@ -28,23 +28,26 @@ define('modules/init', [
             'repeat', 'set', 'then', 'to', 'type', 'until', 'var', 'while', 'with'
         ];
 
-        window.SYMBOLS = [
+        window.SYMBOLS = {
             // 2-character symbols
-            '<>', '<=', '>=',   // Relational Operators (2-char)
-            '(*', '*)',         // Comments (2-char)
-            ':=',               // Assignments
+            //'<>', '<=', '>=',   // Relational Operators (2-char)
+            //'(*', '*)',         // Comments (2-char)
+            //':=',               // Assignments
 
             // 1-character symbols
-            '=', '<', '>',      // Relational Operators (1-char)
-            '{', '}',           // Comments (1-char)
-            '+', '-', '*', '/', // Arithmetic Operators
-            '[', ']',           // Arrays
-            '(', ')',           // Groups
-            '\'', '"',          // String Literals
-            '^',                // Pointers
-            ',', ':',  ';',     // Separators
-            '.'
-        ];
+            //'=', '<', '>',      // Relational Operators (1-char)
+            //'{', '}',           // Comments (1-char)
+            //'+', '-', '*', '/', // Arithmetic Operators
+            //'[', ']',           // Arrays
+            //'(', ')',           // Groups
+            //'\'', '"',          // String Literals
+            //'^',                // Pointers
+            //',', ':',  ';',     // Separators
+            //'.'
+
+            '(*': 'TK_COMMENT_BEGIN',
+            '*)': 'TK_COMMENT_END'
+        };
     }
 
     Init.prototype = {};
