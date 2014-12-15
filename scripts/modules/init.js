@@ -75,9 +75,8 @@ define('modules/init', [
 
             // Fire onload event when file has been successfully read
             reader.onload = function(e) {
-                window.OUTPUT.innerHTML += 'File was successfully loaded.\n';
+                window.OUTPUT.innerHTML += 'File successfully loaded.\n';
                 window.OUTPUT.innerHTML += 'File Name: ' + file.name + '\n';
-                window.OUTPUT.innerHTML += 'File Type: ' + file.type + '\n';
                 window.OUTPUT.innerHTML += 'File Size: ' + file.size + ' bytes\n';
 
                 //scannerDriver(e.target.result);
@@ -140,7 +139,7 @@ define('modules/init', [
         // Initialize the Lexer
         var lexer = new Lexer(contents);
 
-        window.OUTPUT.innerHTML += 'LINE COL         CHARACTER  TOKEN\n';
+        window.OUTPUT.innerHTML += 'LINE COL  CHARACTER  TOKEN\n';
 
         var token;
 
@@ -149,7 +148,7 @@ define('modules/init', [
             // Get next token in source file.
             token = lexer.get();
 
-            window.OUTPUT.innerHTML += ('    ' + token.lineIndex).slice(-4) + ' ' + ('    ' + token.colIndex).slice(-3) + '  ' + ('                ' + token.cargo).slice(-16) + '  ' + token.tokenType + '\n';
+            window.OUTPUT.innerHTML += ('    ' + token.lineIndex).slice(-4) + ' ' + ('    ' + token.colIndex).slice(-3) + '  ' + ('        ' + token.cargo).slice(-9) + '  ' + token.tokenType + '\n';
 
             // End of file reached, stop the driver.
             if(token.cargo === 'EOF') {
