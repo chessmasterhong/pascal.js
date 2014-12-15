@@ -153,7 +153,7 @@ define('modules/init', [
         // Initialize the Lexer
         var lexer = new Lexer(contents);
 
-        window.OUTPUT.innerHTML += 'LINE COL  CHARACTER  TOKEN\n';
+        window.OUTPUT.innerHTML += 'LINE COL  TOKEN                CHARACTER\n';
 
         var token;
 
@@ -162,7 +162,12 @@ define('modules/init', [
             // Get next token in source file.
             token = lexer.get();
 
-            window.OUTPUT.innerHTML += ('    ' + token.lineIndex).slice(-4) + ' ' + ('    ' + token.colIndex).slice(-3) + '  ' + ('        ' + token.cargo).slice(-9) + '  ' + token.tokenType + '\n';
+            window.OUTPUT.innerHTML += (
+                ('    ' + token.lineIndex).slice(-4) +
+                ' ' + ('    ' + token.colIndex).slice(-3) +
+                '  ' + (token.tokenType + new Array(20 - token.tokenType.length).join(' ')) +
+                '  ' + token.cargo + '\n'
+            );
 
             // End of file reached, stop the driver.
             if(token.cargo === 'EOF') {
