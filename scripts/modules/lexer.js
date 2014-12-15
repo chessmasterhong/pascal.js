@@ -45,29 +45,52 @@ define('modules/lexer', [
             // ===============
             c1 = this.nextSymbol(character);
 
-            if(c1 && c1.cargo === '(*') {
-                token.cargo = c1.cargo;
-                token.tokenType = 'TK_COMMENT';
+            if(c1) {
+                if(c1.cargo === '(*') {
+                    token.cargo = c1.cargo;
+                    token.tokenType = 'TK_COMMENT';
 
-                character = this.scanner.get();
+                    character = this.scanner.get();
 
-                c2 = this.nextSymbol(character);
+                    c2 = this.nextSymbol(character);
 
-                while(!c2 || c2.cargo !== '*)') {
-                    if(c1.cargo === 'EOF') {
-                        console.log('Found end of file before end of comment.');
-                        break;
-                    } else {
-                        token.cargo += character.cargo;
-                        character = this.scanner.get();
-                        c2 = this.nextSymbol(character);
+                    while(!c2 || c2.cargo !== '*)') {
+                        if(c1.cargo === 'EOF') {
+                            console.log('Found end of file before end of comment.');
+                            break;
+                        } else {
+                            token.cargo += character.cargo;
+                            character = this.scanner.get();
+                            c2 = this.nextSymbol(character);
+                        }
                     }
-                }
 
-                token.cargo += c2.cargo;
-                character = this.scanner.get();
+                    token.cargo += c2.cargo;
+                    character = this.scanner.get();
+                } else if(c1.cargo === '{') {
+                    token.cargo = c1.cargo;
+                    token.tokenType = 'TK_COMMENT';
+
+                    character = this.scanner.get();
+
+                    c2 = this.nextSymbol(character);
+
+                    while(!c2 || c2.cargo !== '}') {
+                        if(c1.cargo === 'EOF') {
+                            console.log('Found end of file before end of comment.');
+                            break;
+                        } else {
+                            token.cargo += character.cargo;
+                            character = this.scanner.get();
+                            c2 = this.nextSymbol(character);
+                        }
+                    }
+
+                    token.cargo += c2.cargo;
+                    character = this.scanner.get();
+                }
             }
-        } while(token.isWhitespace(character) || (c1 && c1.cargo === '(*'));
+        } while(token.isWhitespace(character) /*|| (c1 && (c1.cargo === '(*' || c1.cargo === '{'))*/);
 
         return token;
     };
