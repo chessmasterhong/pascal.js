@@ -43,8 +43,8 @@ define('modules/lexer', [
             // ===============
             // COMMENT BUILDER
             // ===============
-            // Get next registered symbol (c1) from current character index
-            c1 = this.nextSymbol(character);
+            // Build registered symbol (c1) from current character, if possible
+            c1 = this.buildSymbol(character);
 
             // If c1 exists (a registered symbol exists)
             if(c1) {
@@ -65,8 +65,8 @@ define('modules/lexer', [
                         // Get next character after c1
                         character = this.scanner.get();
 
-                        // Get next registered symbol (c2) from current character index
-                        c2 = this.nextSymbol(character);
+                        // Build registered symbol (c2) from current character, if possible
+                        c2 = this.buildSymbol(character);
 
                         // While c2 is not a "end comment" symbol corresponding c1
                         while(!c2 || c2.cargo !== commentType[i][1]) {
@@ -83,9 +83,9 @@ define('modules/lexer', [
                                 // Append current character to comment token
                                 token.cargo += character.cargo;
 
-                                // Get next character and check if it is a registered symbol
+                                // Get next character and build registered symbol (c2) from next current character, if possible
                                 character = this.scanner.get();
-                                c2 = this.nextSymbol(character);
+                                c2 = this.buildSymbol(character);
                             }
                         }
 
@@ -95,12 +95,20 @@ define('modules/lexer', [
                     }
                 }
             }
-        } while(token.isWhitespace(character) || (c1 && (c1.cargo === commentType[0][0] || c1.cargo === commentType[1][0])));
+        } while(
+            token.isWhitespace(character) /*||
+            (c1 && (c1.cargo === commentType[0][0] || c1.cargo === commentType[1][0]))*/
+        );
 
         return token;
     };
 
-    Lexer.prototype.nextSymbol = function(character) {
+    /**
+     * Builds a registered symbol from the current character, if possible.
+     * @param  {String}      character The current character to attempt to build a registered symbol from
+     * @return {TokenObject} _         The token of the registered symbol.
+     */
+    Lexer.prototype.buildSymbol = function(character) {
         var symbol, sym;
 
         var token = new Token(character);
