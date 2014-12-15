@@ -29,6 +29,8 @@ define('modules/token', [
             this.tokenType = 'Alphanumeric';
         } else if(this.isSymbol()) {
             this.tokenType = this.isSymbol();
+        } else {
+            this.tokenType = '';
         }
     }
 
