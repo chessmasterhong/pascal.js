@@ -43,36 +43,55 @@ define('modules/lexer', [
             // ===============
             // COMMENT BUILDER
             // ===============
+            // Get next registered symbol (c1) from current character index
             c1 = this.nextSymbol(character);
 
+            // If c1 exists (a registered symbol exists)
             if(c1) {
+                // Classify all comment symbols
                 var commentType = [
                     ['(*', '*)'],
                     ['{', '}'],
                 ];
 
+                // For each type of comment symbol
                 for(var i = 0; i < commentType.length; i++) {
+                    // If c1 is a "begin comment" symbol
                     if(c1.cargo === commentType[i][0]) {
+                        // Store c1 in current token and set to comment token
                         token.cargo = c1.cargo;
                         token.tokenType = 'TK_COMMENT';
 
+                        // Get next character after c1
                         character = this.scanner.get();
 
+                        // Get next registered symbol (c2) from current character index
                         c2 = this.nextSymbol(character);
 
+                        // While c2 is not a "end comment" symbol corresponding c1
                         while(!c2 || c2.cargo !== commentType[i][1]) {
-                            if(c1.cargo === 'EOF') {
+                            // If current character reaches end of file before c2 was found (invalid syntax in srcText, comment not ended properly)
+                            if(character.cargo === 'EOF') {
                                 console.log('Found end of file before end of comment.');
+                                c2 = '';
+
+                                // Break c2 search loop (since there are no more characters after end of file)
                                 break;
-                            } else {
+                            }
+                            // If current character did not reach end of file yet
+                            else {
+                                // Append current character to comment token
                                 token.cargo += character.cargo;
+
+                                // Get next character and check if it is a registered symbol
                                 character = this.scanner.get();
                                 c2 = this.nextSymbol(character);
                             }
                         }
 
+                        // "End comment" symbol found (c2 search loop exited)
+                        // Append "end comment" symbol to comment token
                         token.cargo += c2.cargo;
-                        character = this.scanner.get();
                     }
                 }
             }
