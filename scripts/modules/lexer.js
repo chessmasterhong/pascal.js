@@ -27,13 +27,16 @@ define('modules/lexer', [
      * @returns {TokenObject} _ The information about this token.
      */
     Lexer.prototype.get = function() {
-        var character, token;
+        var character, token, symbol;
 
+        // Ignore whitespaces
         do {
+            // If character is end of file, return a null cargo Token
             if(character === 'EOF') {
                 return new Token(null);
             }
 
+            // Get next character and construct token
             character = this.scanner.get();
             token = new Token(character);
         } while(token.isWhitespace(character));
@@ -43,14 +46,14 @@ define('modules/lexer', [
 
         // Search through all registered symbols
         for(var i = 0; i < window.SYMBOLS.length; i++) {
-            var symbol = window.SYMBOLS[i];
+            symbol = window.SYMBOLS[i];
 
             // If chrrent 2-character matches a 2-character registered symbol
             if((symbol.length === 2 && symbol === characterTemp)) {
-                //console.log('2-char: ' + symbol);
+                // Construct new 2-character token
                 token = new Token({
                     cargo    : characterTemp,
-                    //srcText  : null,
+                    srcText  : character.srcText,
                     lineIndex: character.lineIndex,
                     colIndex : character.colIndex,
                 });
@@ -62,10 +65,10 @@ define('modules/lexer', [
                 break;
             // If current 1-character matches a 1-character registered symbol
             } else if(symbol.length === 1 && symbol === character.cargo) {
-                //console.log('1-char: ' + symbol);
+                // Construct new 1-character token
                 token = new Token({
                     cargo    : character.cargo,
-                    //srcText  : null,
+                    srcText  : character.srcText,
                     lineIndex: character.lineIndex,
                     colIndex : character.colIndex,
                 });

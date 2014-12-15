@@ -51,6 +51,11 @@ define('modules/scanner', [
         return char.convertToString();
     };
 
+    /**
+     * Looks ahead to the next character in srcText. This will not advance the
+     *     Scanner position index in srcText.
+     * @return {String} _ The next character in srcText.
+     */
     Scanner.prototype.lookahead = function() {
         var nextSrcIndex  = this.srcIndex + 1,
             nextLineIndex = this.lineIndex + 1,
