@@ -28,27 +28,13 @@ define('modules/token', [
         } else if(this.isAlphanumeric()) {
             this.tokenType = 'Alphanumeric';
         } else if(this.isSymbol()) {
-            this.tokenType = this.isSymbol();
+            this.tokenType = 'Symbol';
         } else {
             this.tokenType = '';
         }
     }
 
     Token.prototype = {};
-
-    Token.prototype.show = function() {
-        var s;
-
-        if(this.tokenType === this.cargo) {
-            s = s + 'Symbol: ' + this.tokenType;
-        } else if(this.tokenType === 'Whitespace') {
-            s = s + 'Whitespace: "' + this.tokenType + '"';
-        } else {
-            s = s + this.tokenType + ': ' + this.cargo;
-        }
-
-        return s;
-    };
 
     /**
      * Determines if the cargo is a whitespace character.
@@ -97,15 +83,7 @@ define('modules/token', [
      * @return {String|Boolean} _ String representation of symbol if true, false if not a registered symbol
      */
     Token.prototype.isSymbol = function() {
-        //return window.SYMBOLS.indexOf(this.cargo) !== -1 ? true : false;
-
-        // 1. Get list of registered symbols in raw format object
-        // 2. Convert list of raw symbols and convert to array of registered symbols
-        // 3. Get index of cargo in registered symbols array (returns number if found or false if not)
-        // 4. Get key of registered symbol in raw format object (returns string)
-        // 5. Get value of registered symbol in raw format object (returns string)
-        var symbols = Object.keys(window.SYMBOLS);
-        return window.SYMBOLS[symbols[symbols.indexOf(this.cargo)]] || false;
+        return window.SYMBOLS.indexOf(this.cargo) !== -1;
     };
 
     return Token;

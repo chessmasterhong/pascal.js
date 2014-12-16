@@ -119,8 +119,8 @@ define('modules/lexer', [
             var characterTemp = character.cargo + this.scanner.lookahead().cargo;
 
             // Search through all registered symbols
-            for(var i = 0; i < Object.keys(window.SYMBOLS).length; i++) {
-                symbol = Object.keys(window.SYMBOLS)[i];
+            for(var i = 0; i < window.SYMBOLS.length; i++) {
+                symbol = window.SYMBOLS[i];
 
                 // If chrrent 2-character matches a 2-character registered symbol
                 if((symbol.length === 2 && symbol === characterTemp)) {
