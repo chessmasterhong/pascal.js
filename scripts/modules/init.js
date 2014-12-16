@@ -42,6 +42,10 @@ define('modules/init', [
             ['(*', '*)'],
             ['{', '}']
         ];
+
+        window.STRINGS = [
+            '"', '\''
+        ];
     }
 
     Init.prototype = {};

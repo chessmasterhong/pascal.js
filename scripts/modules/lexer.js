@@ -27,7 +27,7 @@ define('modules/lexer', [
      * @returns {TokenObject} _ The information about this token.
      */
     Lexer.prototype.get = function() {
-        var character, token, c1, c2;
+        var character, token, c1, c2, s1, s2;
 
         // Ignore whitespaces
         do {
@@ -88,6 +88,27 @@ define('modules/lexer', [
                         token.cargo += c2.cargo;
                     }
                 }
+            }
+
+            // ==============
+            // STRING BUILDER
+            // ==============
+            s1 = window.STRINGS[window.STRINGS.indexOf(token.cargo)];
+            if(s1) {
+                s2 = this.scanner.get();
+
+                while(s2.cargo !== s1) {
+                    if(s2.cargo === 'EOF') {
+                        console.log('Found end of file before end of string literal.');
+                        break;
+                    } else {
+                        token.cargo += s2.cargo;
+                        s2 = this.scanner.get();
+                    }
+                }
+
+                token.cargo += s2.cargo;
+                token.tokenType = 'String';
             }
         } while(
             token.isWhitespace(character) ||
