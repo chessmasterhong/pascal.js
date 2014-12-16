@@ -96,8 +96,8 @@ define('modules/lexer', [
                 }
             }
         } while(
-            token.isWhitespace(character) /*||
-            (c1 && (c1.cargo === commentType[0][0] || c1.cargo === commentType[1][0]))*/
+            token.isWhitespace(character) ||
+            (c1 && (c1.cargo === commentType[0][0] || c1.cargo === commentType[1][0]))
         );
 
         return token;

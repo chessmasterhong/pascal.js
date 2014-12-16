@@ -132,12 +132,16 @@ define('modules/init', [
             // Get next character in source file.
             character = scanner.get();
 
-            window.OUTPUT.innerHTML += ('    ' + character.lineIndex).slice(-4) + ' ' + ('    ' + character.colIndex).slice(-3) + '  ' + character.cargo + '\n';
-
             // End of file reached, stop the driver.
             if(character.cargo === 'EOF') {
                 break;
             }
+
+            window.OUTPUT.innerHTML += (
+                ('    ' + character.lineIndex).slice(-4) +
+                ' ' + ('    ' + character.colIndex).slice(-3) +
+                '  ' + character.cargo + '\n'
+            );
         } while(true);
     }
 
@@ -153,7 +157,7 @@ define('modules/init', [
         // Initialize the Lexer
         var lexer = new Lexer(contents);
 
-        window.OUTPUT.innerHTML += 'LINE COL  TOKEN                CHARACTER\n';
+        window.OUTPUT.innerHTML += 'LINE COL  TOKEN                 CHARACTER\n';
 
         var token;
 
@@ -162,17 +166,17 @@ define('modules/init', [
             // Get next token in source file.
             token = lexer.get();
 
-            window.OUTPUT.innerHTML += (
-                ('    ' + token.lineIndex).slice(-4) +
-                ' ' + ('    ' + token.colIndex).slice(-3) +
-                '  ' + (token.tokenType + new Array(20 - token.tokenType.length).join(' ')) +
-                '  ' + token.cargo + '\n'
-            );
-
             // End of file reached, stop the driver.
             if(token.cargo === 'EOF') {
                 break;
             }
+
+            window.OUTPUT.innerHTML += (
+                ('    ' + token.lineIndex).slice(-4) +
+                ' ' + ('    ' + token.colIndex).slice(-3) +
+                '  ' + (token.tokenType + new Array(21 - token.tokenType.length).join(' ')) +
+                '  ' + token.cargo + '\n'
+            );
         } while(true);
     }
 
