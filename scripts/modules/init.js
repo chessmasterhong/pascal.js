@@ -37,6 +37,11 @@ define('modules/init', [
             '=', '<', '>', '{', '}', '+', '-', '*', '/', '[', ']', '(', ')',
             '\'', '"', '^', ',', ':', ';', '.',
         ];
+
+        window.COMMENTS = [
+            ['(*', '*)'],
+            ['{', '}']
+        ];
     }
 
     Init.prototype = {};
@@ -135,7 +140,7 @@ define('modules/init', [
         // Initialize the Lexer
         var lexer = new Lexer(contents);
 
-        window.OUTPUT.innerHTML += 'LINE COL  TOKEN                 CHARACTER\n';
+        window.OUTPUT.innerHTML += 'LINE COL  TOKEN         CHARACTER\n';
 
         var token;
 
@@ -152,7 +157,7 @@ define('modules/init', [
             window.OUTPUT.innerHTML += (
                 ('    ' + token.lineIndex).slice(-4) +
                 ' ' + ('    ' + token.colIndex).slice(-3) +
-                '  ' + (token.tokenType + new Array(21 - token.tokenType.length).join(' ')) +
+                '  ' + (token.tokenType + new Array(13 - token.tokenType.length).join(' ')) +
                 '  ' + token.cargo + '\n'
             );
         } while(true);

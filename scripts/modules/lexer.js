@@ -48,19 +48,13 @@ define('modules/lexer', [
 
             // If c1 exists (a registered symbol exists)
             if(c1) {
-                // Classify all comment symbols
-                var commentType = [
-                    ['(*', '*)'],
-                    ['{', '}'],
-                ];
-
                 // For each type of comment symbol
-                for(var i = 0; i < commentType.length; i++) {
+                for(var i = 0; i < window.COMMENTS.length; i++) {
                     // If c1 is a "begin comment" symbol
-                    if(c1.cargo === commentType[i][0]) {
+                    if(c1.cargo === window.COMMENTS[i][0]) {
                         // Store c1 in current token and set to comment token
                         token.cargo = c1.cargo;
-                        token.tokenType = 'TK_COMMENT';
+                        token.tokenType = 'Comment';
 
                         // Get next character after c1
                         character = this.scanner.get();
@@ -69,7 +63,7 @@ define('modules/lexer', [
                         c2 = this.buildSymbol(character);
 
                         // While c2 is not a "end comment" symbol corresponding c1
-                        while(!c2 || c2.cargo !== commentType[i][1]) {
+                        while(!c2 || c2.cargo !== window.COMMENTS[i][1]) {
                             // If current character reaches end of file before c2 was found (invalid syntax in srcText, comment not ended properly)
                             if(character.cargo === 'EOF') {
                                 console.log('Found end of file before end of comment.');
@@ -97,7 +91,7 @@ define('modules/lexer', [
             }
         } while(
             token.isWhitespace(character) ||
-            (c1 && (c1.cargo === commentType[0][0] || c1.cargo === commentType[1][0]))
+            (c1 && (c1.cargo === window.COMMENTS[0][0] || c1.cargo === window.COMMENTS[1][0]))
         );
 
         return token;
