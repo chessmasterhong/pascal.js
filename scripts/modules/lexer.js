@@ -120,13 +120,13 @@ define('modules/lexer', [
                 character = this.scanner.get();
                 i1 = new Token(character);
 
-                while(i1.isAlpha()) {
-                    if(i1.cargo === 'EOF') {
-                        break;
-                    } else {
-                        token.cargo += i1.cargo;
+                while(i1.isAlpha() && i1.cargo !== 'EOF') {
+                    token.cargo += i1.cargo;
+
+                    character = this.scanner.lookahead();
+                    i1 = new Token(character);
+                    if(i1.isAlpha()) {
                         character = this.scanner.get();
-                        i1 = new Token(character);
                     }
                 }
 
