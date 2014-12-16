@@ -27,7 +27,7 @@ define('modules/lexer', [
      * @returns {TokenObject} _ The information about this token.
      */
     Lexer.prototype.get = function() {
-        var character, token, c1, c2, s1, s2;
+        var character, token, c1, c2, s1, s2, i1;
 
         // Ignore whitespaces
         do {
@@ -109,6 +109,30 @@ define('modules/lexer', [
 
                 token.cargo += s2.cargo;
                 token.tokenType = 'String';
+            }
+
+            // ==================
+            // IDENTIFIER BUILDER
+            // ==================
+            if(token.isAlpha()) {
+                token.tokenType = 'Identifier';
+
+                character = this.scanner.get();
+                i1 = new Token(character);
+
+                while(i1.isAlpha()) {
+                    if(i1.cargo === 'EOF') {
+                        break;
+                    } else {
+                        token.cargo += i1.cargo;
+                        character = this.scanner.get();
+                        i1 = new Token(character);
+                    }
+                }
+
+                if(window.KEYWORDS.indexOf(token.cargo) !== -1) {
+                    token.tokenType = 'TK_' + token.cargo.toUpperCase();
+                }
             }
         } while(
             token.isWhitespace(character) ||
