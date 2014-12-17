@@ -26,7 +26,7 @@ define('modules/init', [
             'else', 'end', 'file', 'for', 'function', 'goto', 'if', 'in',
             'label', 'mod', 'nil', 'not', 'of', 'packed', 'procedure',
             'program', 'record', 'repeat', 'set', 'then', 'to', 'type',
-            'until', 'var', 'while', 'with'
+            'until', 'var', 'while', 'with', 'write', 'writeln'
         ];
 
         window.SYMBOLS = [
