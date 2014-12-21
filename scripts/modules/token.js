@@ -43,10 +43,18 @@ define('modules/token', [
      */
     Token.prototype.isWhitespace = function() {
         return (
-            this.cargo === '  SPACE  ' ||
-            this.cargo === '  TAB  ' ||
-            this.cargo === '  LF  ' ||
-            this.cargo === '  CR  '
+            //(
+            //    this.cargo === '  SPACE  ' ||
+            //    this.cargo === '  TAB  ' ||
+            //    this.cargo === '  LF  ' ||
+            //    this.cargo === '  CR  '
+            //) ||
+            (
+                this.cargo === ' ' ||
+                this.cargo === '\t' ||
+                this.cargo === '\n' ||
+                this.cargo === '\r'
+            )
         );
     };
 

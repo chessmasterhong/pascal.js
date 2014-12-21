@@ -48,7 +48,7 @@ define('modules/scanner', [
             char = new Character(this.srcText[this.srcIndex], this.lineIndex, this.colIndex, this.srcIndex, this.srcText);
         }
 
-        return char.convertToString();
+        return char;//.convertToString();
     };
 
     /**
@@ -68,7 +68,7 @@ define('modules/scanner', [
             char = new Character(this.srcText[nextSrcIndex], nextLineIndex, nextColIndex, nextSrcIndex, this.srcText);
         }
 
-        return char.convertToString();
+        return char;//.convertToString();
     };
 
     return Scanner;
