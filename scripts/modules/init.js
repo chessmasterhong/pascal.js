@@ -17,6 +17,10 @@ define('modules/init', [
     function Init() {
         window.OUTPUT = document.getElementById('output');
 
+        window.OPTIONS = {
+            SCAN_COMMENTS: false
+        };
+
         window.WHITESPACES = [
             ' ', '\t', '\n', '\r'
         ];
@@ -61,6 +65,16 @@ define('modules/init', [
         var file = evt.target.files[0];
 
         if(file) {
+            // Set user options
+            var opts = document.optionsForm;
+            for(var i = 0; i < opts.length; i++) {
+                if(opts[i].checked) {
+                    window.OPTIONS[opts[i].value] = true;
+                } else {
+                    window.OPTIONS[opts[i].value] = false;
+                }
+            }
+
             // Instantiate FileReader object to read file data to memory
             var reader = new FileReader();
 
