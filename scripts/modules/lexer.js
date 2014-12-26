@@ -136,7 +136,7 @@ define('modules/lexer', [
             }
         } while(
             token.isWhitespace(character) ||
-            (c1 && (c1.cargo === window.COMMENTS[0][0] || c1.cargo === window.COMMENTS[1][0]))
+            (window.OPTIONS.SCAN_COMMENTS === false && (c1 && (c1.cargo === window.COMMENTS[0][0] || c1.cargo === window.COMMENTS[1][0])))
         );
 
         return token;
