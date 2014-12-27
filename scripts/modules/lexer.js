@@ -27,7 +27,7 @@ define('modules/lexer', [
      * @returns {TokenObject} _ The information about this token.
      */
     Lexer.prototype.get = function() {
-        var character, token, c1, c2, s1, s2, i1;
+        var character, token, c1, c2, s1, s2, i1, n1;
 
         // Ignore whitespaces
         do {
@@ -40,9 +40,9 @@ define('modules/lexer', [
             character = this.scanner.get();
             token = new Token(character);
 
-            // ===============
-            // COMMENT BUILDER
-            // ===============
+            // =================
+            //  COMMENT BUILDER
+            // =================
             // Build registered symbol (c1) from current character, if possible
             c1 = this.buildSymbol(character);
 
@@ -90,9 +90,9 @@ define('modules/lexer', [
                 }
             }
 
-            // ==============
-            // STRING BUILDER
-            // ==============
+            // ================
+            //  STRING BUILDER
+            // ================
             s1 = window.STRINGS[window.STRINGS.indexOf(token.cargo)];
             if(s1) {
                 s2 = this.scanner.get();
@@ -111,9 +111,9 @@ define('modules/lexer', [
                 token.tokenType = 'String';
             }
 
-            // ==================
-            // IDENTIFIER BUILDER
-            // ==================
+            // ====================
+            //  IDENTIFIER BUILDER
+            // ====================
             if(token.isAlpha()) {
                 token.tokenType = 'Identifier';
 
@@ -125,6 +125,7 @@ define('modules/lexer', [
 
                     character = this.scanner.lookahead();
                     i1 = new Token(character);
+
                     if(i1.isAlpha()) {
                         character = this.scanner.get();
                     }
@@ -132,6 +133,27 @@ define('modules/lexer', [
 
                 if(window.KEYWORDS.indexOf(token.cargo) !== -1) {
                     token.tokenType = 'TK_' + token.cargo.toUpperCase();
+                }
+            }
+
+            // ================
+            //  NUMBER BUILDER
+            // ================
+            else if(token.isNumeric()) {
+                token.tokenType = 'Number';
+
+                character = this.scanner.get();
+                n1 = new Token(character);
+
+                while(n1.isNumeric() && n1.cargo !== 'EOF') {
+                    token.cargo += n1.cargo;
+
+                    character = this.scanner.lookahead();
+                    n1 = new Token(character);
+
+                    if(n1.isNumeric()) {
+                        character = this.scanner.get();
+                    }
                 }
             }
         } while(

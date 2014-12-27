@@ -59,10 +59,10 @@ define('modules/token', [
     };
 
     /**
-     * Determines if the cargo is a numerical digit.
-     * @returns {Boolean} _ True if digit, false otherwise.
+     * Determines if the cargo is a number.
+     * @returns {Boolean} _ True if number, false otherwise.
      */
-    Token.prototype.isDigit = function() {
+    Token.prototype.isNumeric = function() {
         return this.cargo >= '0' && this.cargo <= '9';
     };
 
@@ -79,11 +79,11 @@ define('modules/token', [
 
     /**
      * Determines if the cargo is an alphanumeric character (either a letter in
-     * the English alphabet or a numerical digit)
+     * the English alphabet or a number)
      * @returns {Boolean} _ True if alphanumeric, false otherwise.
      */
     Token.prototype.isAlphanumeric = function() {
-        return this.isAlpha(this.cargo) || this.isDigit(this.cargo);
+        return this.isAlpha(this.cargo) || this.isNumeric(this.cargo);
     };
 
     /**
