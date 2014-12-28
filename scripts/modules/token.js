@@ -49,12 +49,7 @@ define('modules/token', [
             //    this.cargo === '  LF  ' ||
             //    this.cargo === '  CR  '
             //) ||
-            (
-                this.cargo === ' ' ||
-                this.cargo === '\t' ||
-                this.cargo === '\n' ||
-                this.cargo === '\r'
-            )
+            window.WHITESPACES.indexOf(this.cargo) >= 0
         );
     };
 
@@ -91,7 +86,7 @@ define('modules/token', [
      * @return {String|Boolean} _ String representation of symbol if true, false if not a registered symbol
      */
     Token.prototype.isSymbol = function() {
-        return window.SYMBOLS.indexOf(this.cargo) !== -1;
+        return window.SYMBOLS.indexOf(this.cargo) >= 0;
     };
 
     return Token;

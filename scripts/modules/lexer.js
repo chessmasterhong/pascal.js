@@ -131,7 +131,7 @@ define('modules/lexer', [
                     }
                 }
 
-                if(window.KEYWORDS.indexOf(token.cargo) !== -1) {
+                if(window.KEYWORDS.indexOf(token.cargo) >= 0) {
                     token.tokenType = 'TK_' + token.cargo.toUpperCase();
                 }
             }
