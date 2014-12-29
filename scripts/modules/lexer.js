@@ -140,21 +140,32 @@ define('modules/lexer', [
             //  NUMBER BUILDER
             // ================
             else if(token.isNumeric()) {
-                token.tokenType = 'Number';
+                token.tokenType = 'INTEGER';
 
                 character = this.scanner.get();
                 n1 = new Token(character);
 
-                while(n1.isNumeric() && n1.cargo !== 'EOF') {
+                while((n1.isNumeric() || n1.cargo === '.') && n1.cargo !== 'EOF') {
+                    if(n1.cargo === '.') {
+                        if(token.tokenType === 'INTEGER') {
+                            token.tokenType = 'REAL';
+                        } else {
+                            console.log('Too many decimal points in number.');
+                            break;
+                        }
+                    }
+
                     token.cargo += n1.cargo;
 
                     character = this.scanner.lookahead();
                     n1 = new Token(character);
 
-                    if(n1.isNumeric()) {
+                    if(n1.isNumeric() || n1.cargo === '.') {
                         character = this.scanner.get();
                     }
                 }
+
+                token.tokenType = 'TK_' + token.tokenType;
             }
         } while(
             token.isWhitespace(character) ||
