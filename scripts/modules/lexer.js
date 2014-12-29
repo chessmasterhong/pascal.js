@@ -48,12 +48,14 @@ define('modules/lexer', [
 
             // If c1 exists (a registered symbol exists)
             if(c1) {
+                // Store c1 in current token
+                token.cargo = c1.cargo;
+
                 // For each type of comment symbol
                 for(var i = 0; i < window.COMMENTS.length; i++) {
                     // If c1 is a "begin comment" symbol
                     if(c1.cargo === window.COMMENTS[i][0]) {
-                        // Store c1 in current token and set to comment token
-                        token.cargo = c1.cargo;
+                        // Set token type to comment
                         token.tokenType = 'Comment';
 
                         // Get next character after c1
