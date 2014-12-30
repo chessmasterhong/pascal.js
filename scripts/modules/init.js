@@ -61,6 +61,8 @@ define('modules/init', [
      * @returns {Undefined}
      */
     Init.prototype.readFile = function(evt) {
+        window.OUTPUT.innerHTML = '';
+
         // Retrieve first file from FileList object (if multiple files selected)
         var file = evt.target.files[0];
 
