@@ -55,9 +55,6 @@ define('modules/lexer', [
                 for(var i = 0; i < window.COMMENTS.length; i++) {
                     // If c1 is a "begin comment" symbol
                     if(c1.cargo === window.COMMENTS[i][0]) {
-                        // Set token type to comment
-                        token.tokenType = 'Comment';
-
                         // Get next character after c1
                         character = this.scanner.get();
 
@@ -68,6 +65,7 @@ define('modules/lexer', [
                         while(!c2 || c2.cargo !== window.COMMENTS[i][1]) {
                             // If current character reaches end of file before c2 was found (invalid syntax in srcText, comment not ended properly)
                             if(character.cargo === 'EOF') {
+                                // Handle error
                                 console.log('Found end of file before end of comment.');
                                 c2 = '';
 
@@ -88,6 +86,9 @@ define('modules/lexer', [
                         // "End comment" symbol found (c2 search loop exited)
                         // Append "end comment" symbol to comment token
                         token.cargo += c2.cargo;
+
+                        // Set token type to comment
+                        token.tokenType = 'Comment';
                     }
                 }
             }
@@ -95,21 +96,37 @@ define('modules/lexer', [
             // ================
             //  STRING BUILDER
             // ================
+            // Check if s1 is in list of registered open string symbol
             s1 = window.STRINGS[window.STRINGS.indexOf(token.cargo)];
+
+            // If s1 exists (s1 matches a registered open string symbol)
             if(s1) {
+                // Get next character after s1
                 s2 = this.scanner.get();
 
+                // While s2 is not the same symbol as s1 (indicating closing of string)
                 while(s2.cargo !== s1) {
+                    // If s2 reaches end of file before string opened by s1 was found (invalid syntax in srcText, string not ended properly)
                     if(s2.cargo === 'EOF') {
+                        // Handle error
                         console.log('Found end of file before end of string literal.');
+
+                        // Break s2 search loop (since there are no more characters after end of file)
                         break;
+                    // If s2 did not reach end of file yet
                     } else {
+                        // Append s2 to string token
                         token.cargo += s2.cargo;
+
+                        // Get next character
                         s2 = this.scanner.get();
                     }
                 }
 
+                // "End string" symbol found (matching open string search loop exited)
                 token.cargo += s2.cargo;
+
+                // Set token type to string
                 token.tokenType = 'String';
             }
 
