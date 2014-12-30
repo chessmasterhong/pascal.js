@@ -124,7 +124,7 @@ define('modules/init', [
      */
     function scannerDriver(contents) {
         // Initialize the Scanner
-        var scanner = new Scanner(contents);
+        var scanner = new Scanner(contents, true);
 
         window.OUTPUT.innerHTML += 'LINE COL  CHARACTER\n';
 

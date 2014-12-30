@@ -12,14 +12,17 @@ define('modules/scanner', [
      *     character was found. Each time the scanner is called, it reads the
      *     next character from the file and returns it.
      * @class Scanner
-     * @param {String} srcText The entire source text to be scanned.
+     * @param {String}  srcText              The entire source text to be scanned.
+     * @param {Boolean} [whitespaceToString] Option flag to convert whitespace characters to displayable string representation.
      */
-    function Scanner(srcText) {
+    function Scanner(srcText, whitespaceToString) {
         this.srcText    = srcText;
         this.finalIndex = this.srcText.length - 1;
         this.srcIndex   = -1;
         this.lineIndex  = 0;
         this.colIndex   = -1;
+
+        this.whitespaceToString = whitespaceToString;
     }
 
     Scanner.prototype = {};
@@ -27,7 +30,7 @@ define('modules/scanner', [
     /**
      * Gets the next character in srcText.
      * @function
-     * @returns {CharacterObject} _ The information about this character converted to a displayable string representation.
+     * @returns {CharacterObject} _ The information about this character.
      */
     Scanner.prototype.get = function() {
         this.srcIndex++;
@@ -48,7 +51,7 @@ define('modules/scanner', [
             char = new Character(this.srcText[this.srcIndex], this.lineIndex, this.colIndex, this.srcIndex, this.srcText);
         }
 
-        return char;//.convertToString();
+        return this.whitespaceToString === true ? char.convertToString() : char;
     };
 
     /**
@@ -68,7 +71,7 @@ define('modules/scanner', [
             char = new Character(this.srcText[nextSrcIndex], nextLineIndex, nextColIndex, nextSrcIndex, this.srcText);
         }
 
-        return char;//.convertToString();
+        return char;
     };
 
     return Scanner;
