@@ -19,7 +19,7 @@ define('main', [
         var init = new Init();
 
         // Detect changes (loaded file) in fileInput and runs the compiler on change
-        document.getElementById('fileInput').addEventListener('change', init.readFile, false);
+        document.getElementById('fileInput').addEventListener('change', init.readSrc, false);
     } else {
         alert('ERROR: The File APIs are not fully supported in your browser.');
     }

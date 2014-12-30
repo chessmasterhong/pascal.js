@@ -5,7 +5,7 @@
         <title>pascal.js</title>
 
         <style>
-            .container {
+            .content {
                 color: #000;
                 background: #ccc;
                 border: 3px double #000;
@@ -15,10 +15,14 @@
     </head>
 
     <body>
-        <div class="container">
-            <input type="file" id="fileInput">
-            <form name="optionsForm">
-                <input type="checkbox" name="options" value="SCAN_COMMENTS"> Scan comments
+        <div class="content">
+            <form name="input">
+                <div>
+                    <input type="file" id="fileInput">
+                </div>
+                <div>
+                    <input type="checkbox" name="options" value="SCAN_COMMENTS"> Scan comments
+                </div>
             </form>
             <pre><code id="output"></code></pre>
         </div>

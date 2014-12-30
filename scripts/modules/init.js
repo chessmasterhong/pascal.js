@@ -60,7 +60,7 @@ define('modules/init', [
      * @param {Object} evt The event change object containing the list of files to be loaded.
      * @returns {Undefined}
      */
-    Init.prototype.readFile = function(evt) {
+    Init.prototype.readSrc = function(evt) {
         window.OUTPUT.innerHTML = '';
 
         // Retrieve first file from FileList object (if multiple files selected)
@@ -68,7 +68,7 @@ define('modules/init', [
 
         if(file) {
             // Set user options
-            var opts = document.optionsForm;
+            var opts = document.input;
             for(var i = 0; i < opts.length; i++) {
                 if(opts[i].checked) {
                     window.OPTIONS[opts[i].value] = true;
