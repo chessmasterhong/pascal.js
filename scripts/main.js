@@ -18,6 +18,11 @@ define('main', [
     if(File && FileReader) {
         var init = new Init();
 
+        var opts = document.input.options;
+        for(var i = 0; i < opts.length; i++) {
+            opts[i].checked = window.OPTIONS[opts[i].value];
+        }
+
         // Detect changes (loaded file) in fileInput and runs the compiler on change
         document.getElementById('fileInput').addEventListener('change', init.readSrc, false);
     } else {

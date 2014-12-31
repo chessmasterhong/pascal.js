@@ -11,6 +11,10 @@
                 border: 3px double #000;
                 padding: 15px 15px 0;
             }
+
+            input[type="checkbox"] {
+                margin-left: 15px;
+            }
         </style>
     </head>
 
@@ -21,7 +25,14 @@
                     <input type="file" id="fileInput">
                 </div>
                 <div>
-                    <input type="checkbox" name="options" value="SCAN_COMMENTS"> Scan comments
+                    <p>
+                        <!-- TODO: Implement optional output based on checkbox selection
+                        <input type="checkbox" name="options" value="SHOW_SCANNER_PROCESS"> Show scanner process
+                        <input type="checkbox" name="options" value="SHOW_LEXER_PROCESS"> Show lexer process
+                        <br>
+                        -->
+                        <input type="checkbox" name="options" value="SCAN_COMMENTS"> Scan comments
+                    </p>
                 </div>
             </form>
             <pre><code id="output"></code></pre>

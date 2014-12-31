@@ -18,7 +18,10 @@ define('modules/init', [
         window.OUTPUT = document.getElementById('output');
 
         window.OPTIONS = {
-            SCAN_COMMENTS: false
+            SHOW_SCANNER_PROCESS: false,
+            SHOW_LEXER_PROCESS  : true,
+
+            SCAN_COMMENTS       : false
         };
 
         window.WHITESPACES = [
@@ -68,7 +71,7 @@ define('modules/init', [
 
         if(file) {
             // Set user options
-            var opts = document.input;
+            var opts = document.input.options;
             for(var i = 0; i < opts.length; i++) {
                 if(opts[i].checked) {
                     window.OPTIONS[opts[i].value] = true;
