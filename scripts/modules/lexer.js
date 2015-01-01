@@ -134,23 +134,32 @@ define('modules/lexer', [
             //  IDENTIFIER BUILDER
             // ====================
             if(token.isAlpha()) {
-                token.tokenType = 'Identifier';
+                //token.tokenType = 'Identifier';
 
+                // Get next character after i1 and create a token from it
                 character = this.scanner.get();
                 i1 = new Token(character);
 
+                // While i1 is an English alphabet character and not end-of-file character
                 while(i1.isAlpha() && i1.cargo !== 'EOF') {
+                    // Append i1 to identifier token
                     token.cargo += i1.cargo;
 
+                    // Temporarily look ahead to the next character and create a token from it
                     character = this.scanner.lookahead();
                     i1 = new Token(character);
 
+                    // If the lookahead character is also an English alphabet character (indicating valid identifier syntax)
                     if(i1.isAlpha()) {
+                        // Advance scanner by one character (the lookahead character)
                         character = this.scanner.get();
                     }
                 }
 
+                // Cannot find any more valid characters to add to the identifier (identifier build loop exited)
+                // If the built identifier matches a registered identifier
                 if(window.KEYWORDS.indexOf(token.cargo) >= 0) {
+                    // Update token type to be consistent with other token types
                     token.tokenType = 'TK_' + token.cargo.toUpperCase();
                 }
             }
